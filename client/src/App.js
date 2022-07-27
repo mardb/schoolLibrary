@@ -1,13 +1,14 @@
-import logo from './logo.svg';
 // import './App.css';
+// import apiBaseUrl from './config'
 import './styles/global.css'
 import './styles/reset.css'
+
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
+// import {
+  // BrowserRouter as Router,
+  // Route,
+  // Switch
+// } from 'react-router-dom';
 import Header from './components/Header';//
 import SignUpUser from './components/SignUpUser';//
 import SignIn from './components/SignIn'//
@@ -21,25 +22,25 @@ import Forbidden from './components/Forbidden';//
 import Error from './components/Error';//
 import PrivateRoute from './components/PrivateRoute'; //
 
+function App () {
+  // const url = config.apiBaseUrl 
+  const url = 'http://localhost:5000/api'
+  fetch(`${url}/courses`)
+  .then(res => res.json()).then(data => {
+    console.log(data.courses)
+  }
+);
 
-export default () => (
-
+  return(
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+       <ul>
+       </ul>
+     </div>
+
+  )
+ 
+}; 
+
+export default App;
 
 

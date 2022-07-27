@@ -1,6 +1,6 @@
 import React from "react";
 
-const CourseIndex = () => {
+const Courses = () => {
 
   return(
 

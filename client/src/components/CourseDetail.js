@@ -13,7 +13,10 @@ const CourseDetail = () => {
             <a className="button" 
             // href="#"
             >Delete Course</a>
-            <a className="button button-secondary" href="index.html">Return to List</a>
+            <a 
+            className="button button-secondary" 
+            // href="index.html"
+            >Return to List</a>
         </div>
     </div>
     

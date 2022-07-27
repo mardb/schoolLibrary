@@ -4,9 +4,9 @@ import React from "react";
 const CreateCourse = () => {
 
   return (
-    <div class="wrap">
+    <div className="wrap">
     <h2>Create Course</h2>
-    <div class="validation--errors">
+    <div className="validation--errors">
         <h3>Validation Errors</h3>
         <ul>
             <li>Please provide a value for "Title"</li>
@@ -14,7 +14,7 @@ const CreateCourse = () => {
         </ul>
     </div>
     <form>
-        <div class="main--flex">
+        <div className="main--flex">
             <div>
                 <label for="courseTitle">Course Title</label>
                 <input id="courseTitle" name="courseTitle" type="text" value=""/>
@@ -32,7 +32,7 @@ const CreateCourse = () => {
                 <textarea id="materialsNeeded" name="materialsNeeded"></textarea>
             </div>
         </div>
-        <button class="button" type="submit">Create Course</button><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
+        <button className="button" type="submit">Create Course</button><button className="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
     </form>
 </div>
   )

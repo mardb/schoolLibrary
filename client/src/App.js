@@ -1,6 +1,6 @@
-// import './App.css';
+import './App.css';
 // import apiBaseUrl from './config'
-import './styles/global.css'
+// import './styles/global.css'
 import './styles/reset.css'
 
 import React from 'react';
@@ -34,6 +34,7 @@ function App () {
   return(
     <div className="App">
        <ul>
+         <Header />
        </ul>
      </div>
 

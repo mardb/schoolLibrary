@@ -20,7 +20,7 @@ import CourseDetail from './components/CourseDetail';//
 import NotFound from './components/NotFound'//
 import Forbidden from './components/Forbidden';//
 import Error from './components/Error';//
-import PrivateRoute from './components/PrivateRoute'; //
+import PrivateRoute from './PrivateRoute'; //
 
 function App () {
   // const url = config.apiBaseUrl 

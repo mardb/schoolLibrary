@@ -1,5 +1,6 @@
 import React from "react";
 
+//make stateful component
 const CreateCourse = () => {
 
   return (

@@ -1,5 +1,6 @@
 import React from "react";
 
+//change to stateful component
 const CourseDetail = () => {
 
   return(

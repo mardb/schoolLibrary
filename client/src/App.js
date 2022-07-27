@@ -10,9 +10,9 @@ import React from 'react';
   // Switch
 // } from 'react-router-dom';
 import Header from './components/Header';//
-import SignUpUser from './components/SignUpUser';//
-import SignIn from './components/SignIn'//
-import SignOut from './components/SignOut';//
+import UserSignUp from './components/UserSignUp';//
+import UserSignIn from './components/UserSignIn'//
+import UserSignOut from './components/UserSignOut';//
 import Courses from './components/Courses';//
 import CreateCourse from './components/CreateCourse';//
 import UpdateCourse from './components/UpdateCourse';//

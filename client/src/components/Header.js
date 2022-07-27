@@ -1,5 +1,6 @@
 import React from "react";
 
+//make stateless component
 const Header = () =>{
 
   return(

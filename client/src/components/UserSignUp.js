@@ -1,6 +1,7 @@
 import React from "react";
 
-const SignUpUser = () => {
+//make stateful component
+const UserSignUp = () => {
   return(
     <div class="form--centered">
     <h2>Sign Up</h2>
@@ -22,4 +23,4 @@ const SignUpUser = () => {
   )
 }
 
-export default SignUpUser
+export default UserSignUp;

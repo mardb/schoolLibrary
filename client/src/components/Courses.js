@@ -1,5 +1,7 @@
 import React from "react";
 
+
+// allow Courses component to retrieve it's data from the REST API when those components are mounted. 
 const Courses = () => {
 
   return(

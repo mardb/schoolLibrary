@@ -1,5 +1,8 @@
 import React from "react";
 
+
+//allow CourseDetail component to retrieve their data from the REST API when those components are mounted. 
+
 //change to stateful component
 const CourseDetail = () => {
 

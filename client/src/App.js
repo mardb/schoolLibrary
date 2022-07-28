@@ -26,13 +26,13 @@ import PrivateRoute from './PrivateRoute'; //
 import withContext from './Context';
 
 function App () {
-  // const url = config.apiBaseUrl 
-  const url = 'http://localhost:5000/api'
-  fetch(`${url}/courses`)
-  .then(res => res.json()).then(data => {
-    console.log(data.courses)
-  }
-);
+//   const url = config.apiBaseUrl 
+//   const url = 'http://localhost:5000/api'
+//   fetch(`${url}/courses`)
+//   .then(res => res.json()).then(data => {
+//     console.log(data.courses)
+//   }
+// );
 
 const HeaderWithContext = withContext(Header)
 const CoursesWithContext = withContext(Courses)

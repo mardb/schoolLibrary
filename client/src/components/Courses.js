@@ -13,15 +13,33 @@ console.log(data);
       .catch((error) => {
         console.log(error.message);
         // useNavigate('/error');
+        // history.pushState('/')
       }, []);
   });
+
+  const url = 'http://localhost:5000/api'
+  fetch(`${url}/courses`)
+  .then(res => res.json()).then(data => {
+    console.log(data.courses)
+  }
+);
+
 
 
   return (
     <React.Fragment>
       <div className="wrap main--grid">
-        
-        
+        {courses.map((course, index) => 
+            <Link to={`/courses/${course.id}`} 
+            key={index} //for map
+             className="course--module course--link" 
+            
+            >
+            <h2 className="course--label">Course</h2>
+            <h3 className="course--title">{course.title}</h3>
+             </Link>
+        )}
+
                 <Link className="course--module course--link" 
                 to={`/course-detail`} 
                 // key={index} //for map
@@ -31,8 +49,6 @@ console.log(data);
                  </Link>
                     
              
-        
-      {/* {courseList} */}
       <a className="course--module course--add--module">
         <span className="course--add--title">
           <svg

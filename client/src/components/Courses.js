@@ -5,42 +5,30 @@ import { Context } from '../Context'
 const Courses = () => {
   const [courses, setCourses] = useState([]);
   const {data } = useContext(Context)
+console.log(data);
 
   useEffect(() => {
    data.getCourses()
       .then((response) => setCourses(response))
       .catch((error) => {
         console.log(error.message);
-        // useNavigate('/error');
+        useNavigate('/error');
       }, []);
   });
 
-//   const courseList = courses.map((course, index) => {
-//     return (
-//       <React.Fragment>
-//         <Link
-//           className="course--module course--link"
-//           to={`/courses/${course.id}`}
-//           key={index}
-//         >
-//           <h2 className="course--label">Course</h2>
-//           <h3 className="course--title">{course.title}</h3>
-//         </Link>
-//       </React.Fragment>
-//     );
-//   });
 
   return (
     <React.Fragment>
       <div className="wrap main--grid">
         
         
-                <a className="course--module course--link" 
-                // to={} key={} 
+                <Link className="course--module course--link" 
+                href={`/course-detail`} 
+                // key={index} 
                 >
                 <h2 className="course--label">Course</h2>
                 <h3 className="course--title">Course Title</h3>
-                 </a>
+                 </Link>
                     
              
         

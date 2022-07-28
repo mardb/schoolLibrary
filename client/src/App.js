@@ -41,7 +41,7 @@ const CoursesWithContext = withContext(Courses)
       <div className="App">
          <HeaderWithContext />
          <Routes>
-          <Route path="/courses" element={<Courses />} />
+          <Route path="/courses" element={<CoursesWithContext />} />
          </Routes>
          <Courses />
       </div>

@@ -9,12 +9,15 @@ export class Provider extends Component {
     super();
     this.data = new Data();
     //TODO: add new user fields fn ln email pswd
-    this.state={}
+    this.state = {
+      authenticatedUser: null
+    }
   }
 
   render() {
+    const { authenticatedUser } = this.state;
     const value = {
-      // authenticatedUser,
+      authenticatedUser,
       data: this.data,
       actions: {
         signIn: this.signIn,
@@ -31,11 +34,22 @@ export class Provider extends Component {
 
   //similar to exercise - re-watch
   signIn = async (username, password) => {
-
+    const user = await this.data.getUser(username, password)
+    if(user !== null){
+      this.setState(() => {
+        return {
+          authenticatedUser: user
+        }
+      })
+    } else {
+      console.log('invalid username');
+    } 
+    return user;
+    
   }
 
   signOut = () => {
-
+    this.setState({authenticatedUser : null})
   }
 }
 

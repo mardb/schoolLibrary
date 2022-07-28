@@ -34,7 +34,7 @@ function App () {
 );
 
 const HeaderWithContext = withContext(Header)
-
+const CoursesWithContext = withContext(Courses)
   return(
     <div className="App">
        <ul>

@@ -1,10 +1,11 @@
 import React from "react";
 import Context from "../Context";
+import {Link} from 'react-router-dom'
 
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted. 
 
 //change to stateful component
-const CourseDetail = () => {
+const CourseDetail = (props) => {
 
   return(
 <>

@@ -17,28 +17,54 @@ export default class Data {
     }
 
     if (requiresAuth) {    
-      const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
+      const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
       options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     }
     return fetch(url, options);
   }
   
 //  all properties and values for the currently authenticated User 
-  async getUser() {
+  async getUser(emailAddress, password) {
+    const response = await this.api(`/users`, 'GET', null, true, {emailAddress, password });
+    if (response.status === 200) {
+      return response.json().then(data => data);
+    } else if(response === 401){
+      return null
+    } else {
+      throw new Error();
+    }
   }
 
   // creates a new user,
-  async createNewUser() {
-  
+  async createNewUser(user) {
+    const response = await this.api(`/users`, 'POST', user);
+    if (response.status === 201) {
+      return response.json().then(data => data);
+    } else if(response.status === 400){
+      return response.json().then(data => (data.errors));
+    } else {
+      throw new Error();
+    }
   }
 
   // returns the corresponding course 
-  async getCourse(){
-  
+  async getCourse(id){
+    const response = await this.api(`/courses/${id}`, 'GET', null);
+    if (response.status === 200) {
+      return response.json().then(data => {
+        return data.course
+      });
+    }
+    else if (response.status === 401) {
+      return null;
+    }
+    else {
+      throw new Error();
+    }
   }
 
   //  returns all courses including the User associated with each course
-  async getAllCourses(){
+  async getCourses(){
     const response = await this.api(`/courses`, 'GET', null);
     if (response.status === 200) {
       return response.json().then(data => data);
@@ -52,18 +78,48 @@ export default class Data {
   }
 
   // creates a new course
-  async createNewCourse(){
-
+  async createNewCourse(course, authenticatedUser){
+    const response = await this.api('/courses', 'POST', course, true, {username: authenticatedUser.user.emailAddress, password: authenticatedUser.password });
+    if (response.status === 201) {
+      console.log(response);
+    }
+    else if (response.status === 400) {
+      return response.json().then(data => data);
+    }
+    else {
+      throw new Error();
+    }
   }
 
   //updates the corresponding course
-  async updateCourse(){
-
+  async updateCourse(course, user, id){
+    const {emailAddress, password} = user;
+const response = await this.api(`/courses/${id}`, 'PUT', course, true, {emailAddress, password });
+if (response.status === 204) {
+  console.log(response);
+}
+else if (response.status === 400) {
+  return response.json().then(data => (data.errors));
+}
+else {
+  throw new Error();
+}
   }
 
   //deletes the corresponding course 
-  async deleteCourse(){
+  async deleteCourse(id, emailAddress, password){
 
+    const response = await this.api(`/courses/${id}`, 'DELETE', true, {emailAddress, password });
+
+    if (response.status === 204) {
+      console.log(response);
+    }
+    else if (response.status === 404) {
+    console.log(response);
+    }
+    else {
+      throw new Error();
+    }
   }
 
 }

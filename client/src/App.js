@@ -37,12 +37,12 @@ function App() {
         {/* <Header /> */}
         <HeaderWithContext />
         <Switch>
-          {/* <Route path="/" element={<Courses />} /> */}
-          {/* <Route path="/courses" element={<Courses />} /> */}
-          {/* <Route path="/courses" element={<CoursesWithContext />} /> */}
-          <Route path="/courses/:id" element={<CourseDetail />} />
+        <Route path="/" component={Courses} />
+        <Route path="/courses" component={Courses} />
+        <Route path="/courses/:id" component={CourseDetail} />
         </Switch>
-        <Courses />
+        {/* <Courses /> */}
+
       </div>
     </BrowserRouter>
   );

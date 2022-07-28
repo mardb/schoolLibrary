@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, Router, useNavigate } from 'react-router-dom';
-
+import { Context } from '../Context'
 // allow Courses component to retrieve it's data from the REST API when those components are mounted.
-const Courses = (props) => {
-  const [courses, setCourses] = useState(null);
-//   const { context } = props;
+const Courses = () => {
+  const [courses, setCourses] = useState([]);
+  const {data } = useContext(Context)
 
   useEffect(() => {
-   props.context.actions
-      .getCourses()
+   data.getCourses()
       .then((response) => setCourses(response))
       .catch((error) => {
         console.log(error.message);
-        useNavigate('/error');
+        // useNavigate('/error');
       }, []);
   });
 
@@ -35,19 +34,18 @@ const Courses = (props) => {
     <React.Fragment>
       <div className="wrap main--grid">
         
-          if(courses){
-            courses.map((course, index)=>{
-              return(
-                <Link className="course--module course--link" to={`/courses/${course.id}`} key={index} >
+        
+                <a className="course--module course--link" 
+                // to={} key={} 
+                >
                 <h2 className="course--label">Course</h2>
-                <h3 className="course--title">{course.title}</h3>
-                </Link>
-                    )
-                })
-            }
+                <h3 className="course--title">Course Title</h3>
+                 </a>
+                    
+             
         
       {/* {courseList} */}
-      {/* <Link className="course--module course--add--module">
+      <a className="course--module course--add--module">
         <span className="course--add--title">
           <svg
             version="1.1"
@@ -61,7 +59,7 @@ const Courses = (props) => {
           </svg>
           New Course
         </span>
-      </Link> */}
+      </a> 
     </div>
     </React.Fragment>
   );

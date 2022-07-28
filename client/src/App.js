@@ -4,11 +4,12 @@ import './App.css';
 import './styles/reset.css'
 
 import React from 'react';
-// import {
-  // BrowserRouter as Router,
-  // Route,
-  // Switch
-// } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Switch
+} from 'react-router-dom';
 import Header from './components/Header';//
 import UserSignUp from './components/UserSignUp';//
 import UserSignIn from './components/UserSignIn'//
@@ -36,12 +37,15 @@ function App () {
 const HeaderWithContext = withContext(Header)
 const CoursesWithContext = withContext(Courses)
   return(
-    <div className="App">
-       <ul>
+    <BrowserRouter>
+      <div className="App">
          <HeaderWithContext />
+         <Routes>
+          <Route path="/courses" element={<Courses />} />
+         </Routes>
          <Courses />
-       </ul>
-     </div>
+      </div>
+     </BrowserRouter>
 
   )
  

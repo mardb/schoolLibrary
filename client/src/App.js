@@ -40,9 +40,9 @@ const CoursesWithContext = withContext(Courses)
     <BrowserRouter>
       <div className="App">
          <HeaderWithContext />
-         <Routes>
+         <Switch>
           <Route path="/courses" element={<CoursesWithContext />} />
-         </Routes>
+         </Switch>
          <Courses />
       </div>
      </BrowserRouter>

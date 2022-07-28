@@ -12,7 +12,7 @@ console.log(data);
       .then((response) => setCourses(response))
       .catch((error) => {
         console.log(error.message);
-        useNavigate('/error');
+        // useNavigate('/error');
       }, []);
   });
 
@@ -23,8 +23,8 @@ console.log(data);
         
         
                 <Link className="course--module course--link" 
-                href={`/course-detail`} 
-                // key={index} 
+                to={`/course-detail`} 
+                // key={index} //for map
                 >
                 <h2 className="course--label">Course</h2>
                 <h3 className="course--title">Course Title</h3>

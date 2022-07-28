@@ -1,5 +1,5 @@
 import React, { useContext, Component } from 'react';
-import { Route, Navigate} from 'react-router-dom';
+import { Route, Redirect} from 'react-router-dom';
 import { Consumer, Context } from './Context';
 
 export default ({ component: Component, ...rest }) => {
@@ -13,7 +13,7 @@ export default ({ component: Component, ...rest }) => {
             context.authenticatedUser ? (
               <Component {...props} />
             ) : (
-              <Navigate
+              <Redirect
                 to={{
                   pathname: '/signin',
                   state: { from: props.location },

@@ -33,20 +33,20 @@ router.get(
     });
   })
 );
-
+// EDIT WITH APPROVED ROUTE
 //---------------
-const courses = await Course.findAll({
-  include: [
-    {
-      model: User,
-      as: 'user',
-      attributes: ['id', 'firstName', 'lastName', 'emailAddress'],
-    },
-  ],
-  attributes: {
-    exclude: ['createdAt', 'updatedAt'],
-  },
-});
+// const courses = await Course.findAll({
+//   include: [
+//     {
+//       model: User,
+//       as: 'user',
+//       attributes: ['id', 'firstName', 'lastName', 'emailAddress'],
+//     },
+//   ],
+//   attributes: {
+//     exclude: ['createdAt', 'updatedAt'],
+//   },
+// });
 //-------------
 
 // creates a new user, set the Location header to "/", and return a 201 HTTP status code and no content.

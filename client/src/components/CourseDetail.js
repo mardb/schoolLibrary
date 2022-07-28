@@ -1,5 +1,5 @@
 import React from "react";
-
+import Context from "../Context";
 
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted. 
 

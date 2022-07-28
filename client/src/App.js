@@ -22,6 +22,8 @@ import Forbidden from './components/Forbidden';//
 import Error from './components/Error';//
 import PrivateRoute from './PrivateRoute'; //
 
+import withContext from './Context';
+
 function App () {
   // const url = config.apiBaseUrl 
   const url = 'http://localhost:5000/api'
@@ -31,10 +33,12 @@ function App () {
   }
 );
 
+const HeaderWithContext = withContext(Header)
+
   return(
     <div className="App">
        <ul>
-         <Header />
+         <HeaderWithContext />
        </ul>
      </div>
 

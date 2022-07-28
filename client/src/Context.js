@@ -9,13 +9,21 @@ export class Provider extends Component {
     super();
     this.data = new Data();
     //TODO: add new user fields fn ln email pswd
+    this.state={}
   }
 
   render() {
-
+    const value = {
+      // authenticatedUser,
+      data: this.data,
+      actions: {
+        signIn: this.signIn,
+        signOut: this.signOut
+      },
+    };
 
     return (
-      <Context.Provider>
+      <Context.Provider value={value}>
         {this.props.children}
       </Context.Provider>  
     );

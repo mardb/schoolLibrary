@@ -15,8 +15,8 @@ console.log(data.courses);
         console.log(error.message);
         // useNavigate('/error');
         // history.pushState('/')
-      },[]);
-  });
+      });
+  },[]);
 
   const url = 'http://localhost:5000/api'
   fetch(`${url}/courses`)

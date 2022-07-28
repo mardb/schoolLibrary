@@ -3,18 +3,19 @@ import { Link, Router, useNavigate } from 'react-router-dom';
 import { Context } from '../Context'
 // allow Courses component to retrieve it's data from the REST API when those components are mounted.
 const Courses = () => {
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState();
   const {data } = useContext(Context)
 console.log(data);
 
   useEffect(() => {
    data.getCourses()
       .then((response) => setCourses(response))
+
       .catch((error) => {
         console.log(error.message);
         // useNavigate('/error');
         // history.pushState('/')
-      }, []);
+      });
   });
 
   const url = 'http://localhost:5000/api'

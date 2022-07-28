@@ -1,8 +1,8 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Navigate } from 'react-router-dom';
 import { Consumer } from './Context';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+export default ({ component: Component, ...rest }) => {
   return (
     <Consumer>
       {(context) => (
@@ -12,7 +12,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             context.authenticatedUser ? (
               <Component {...props} />
             ) : (
-              <Redirect
+              <Navigate
                 to={{
                   pathname: '/signin',
                   state: { from: props.location },
@@ -26,4 +26,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-export default PrivateRoute;
+

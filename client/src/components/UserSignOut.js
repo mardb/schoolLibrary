@@ -1,7 +1,7 @@
 import React from "react";
-
+import { Redirect } from 'react-router-dom'
 //change to stateless component
-const UserSignOut = () => {
+const UserSignOut = ({context}) => {
 
   return(
     <></>

@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { Component } from 'react';
 
 export default class UserSignUp extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class UserSignUp extends Component {
   render() { 
     return (  
 
-      <div class="form--centered">
+      <div className="form--centered">
       <h2>Sign Up</h2>
             <form>
               <label for="firstName">First Name</label>
@@ -19,11 +20,11 @@ export default class UserSignUp extends Component {
               <input id="emailAddress" name="emailAddress" type="email" value="" />
               <label for="password">Password</label>
               <input id="password" name="password" type="password" value="" />
-              <button class="button" type="submit">
+              <button className="button" type="submit">
                 Sign Up
               </button>
               <button
-                class="button button-secondary"
+                className="button button-secondary"
                 onclick="event.preventDefault(); location.href='index.html';"
               >
                 Cancel

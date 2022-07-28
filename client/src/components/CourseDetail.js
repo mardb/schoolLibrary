@@ -1,26 +1,40 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Context from "../Context";
-import {Link} from 'react-router-dom'
-
+import {Link, useParams, useNavigate} from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted. 
 
 //change to stateful component
 const CourseDetail = (props) => {
+const [course, setCourse] = useState()
+const [edit, setEdit] = useState(false)
+const {data, authenticatedUser} = useContext(Context)
+const {id} = useParams()
+
+
+useEffect(() =>{
+data.getCourse(id).then(response => setCourse(response)).catch(error => {
+    console.log(error);
+})
+},[])
 
   return(
 <>
-    <div className="actions--bar">
+      
+ <div className="actions--bar">
         <div className="wrap">
-            <a className="button" 
+            <button className="button" 
             // href="update-course.html"
-            >Update Course</a>
-            <a className="button" 
+            >Update Course</button>
+            <button className="button" 
             // href="#"
-            >Delete Course</a>
-            <a 
+            >Delete Course</button>
+            <Link to={'/courses'}
             className="button button-secondary" 
             // href="index.html"
-            >Return to List</a>
+            >
+                Return to List
+            </Link>
         </div>
     </div>
     
@@ -30,27 +44,20 @@ const CourseDetail = (props) => {
             <div className="main--flex">
                 <div>
                     <h3 className="course--detail--title">Course</h3>
-                    <h4 className="course--name">Build a Basic Bookcase</h4>
-                    <p>By Joe Smith</p>
-
+                    <h4 className="course--name">{course.title}</h4>
+                    <p>By {course.Users.firstName} {course.Users.lastName}</p>
+                    <ReactMarkdown>{course.description}</ReactMarkdown>
+                    {/* delete below once it renders */}
                     <p>High-end furniture projects are great to dream about. But unless you have a well-equipped shop and some serious woodworking experience to draw on, it can be difficult to turn the dream into a reality.</p>
-                    
-                    <p>Not every piece of furniture needs to be a museum showpiece, though. Often a simple design does the job just as well and the experience gained in completing it goes a long way toward making the next project even better.</p>
-                    
-                    <p>Our pine bookcase, for example, features simple construction and it's designed to be built with basic woodworking tools. Yet, the finished project is a worthy and useful addition to any room of the house. While it's meant to rest on the floor, you can convert the bookcase to a wall-mounted storage unit by leaving off the baseboard. You can secure the cabinet to the wall by screwing through the cabinet cleats into the wall studs.</p>
-                    
-                    <p>We made the case out of materials available at most building-supply dealers and lumberyards, including 1/2 x 3/4-in. parting strip, 1 x 2, 1 x 4 and 1 x 10 common pine and 1/4-in.-thick lauan plywood. Assembly is quick and easy with glue and nails, and when you're done with construction you have the option of a painted or clear finish.</p>
-                    
-                    <p>As for basic tools, you'll need a portable circular saw, hammer, block plane, combination square, tape measure, metal rule, two clamps, nail set and putty knife. Other supplies include glue, nails, sandpaper, wood filler and varnish or paint and shellac.</p>
-                    
-                    <p>The specifications that follow will produce a bookcase with overall dimensions of 10 3/4 in. deep x 34 in. wide x 48 in. tall. While the depth of the case is directly tied to the 1 x 10 stock, you can vary the height, width and shelf spacing to suit your needs. Keep in mind, though, that extending the width of the cabinet may require the addition of central shelf supports.</p>
+
                 </div>
                 <div>
                     <h3 className="course--detail--title">Estimated Time</h3>
-                    <p>14 hours</p>
+                    <p>{course.estimatedTime}</p>
 
                     <h3 className="course--detail--title">Materials Needed</h3>
-                    <ul className="course--detail--list">
+                    <ReactMarkdown className="course--detail--list">{course.materialsNeeded}</ReactMarkdown>
+                    {/* <ul className="course--detail--list">
                         <li>1/2 x 3/4 inch parting strip</li>
                         <li>1 x 2 common pine</li>
                         <li>1 x 4 common pine</li>
@@ -61,11 +68,11 @@ const CourseDetail = (props) => {
                         <li>Wood Glue</li>
                         <li>Wood Filler</li>
                         <li>Minwax Oil Based Polyurethane</li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
         </form>
-    </div>
+    </div> 
     </>
   )
 }

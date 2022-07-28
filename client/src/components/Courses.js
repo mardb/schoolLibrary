@@ -41,16 +41,16 @@ console.log(data.courses);
              </Link>
         )}
 
-                <Link className="course--module course--link" 
+                {/* <Link className="course--module course--link" 
                 to={`/course-detail`} 
                 // key={index} //for map
                 >
                 <h2 className="course--label">Course</h2>
                 <h3 className="course--title">Course Title</h3>
-                 </Link>
+                 </Link> */}
                     
              
-      <a className="course--module course--add--module">
+      <Link to={`/courses/create`} className="course--module course--add--module">
         <span className="course--add--title">
           <svg
             version="1.1"
@@ -64,7 +64,7 @@ console.log(data.courses);
           </svg>
           New Course
         </span>
-      </a> 
+      </Link> 
     </div>
     </React.Fragment>
   );

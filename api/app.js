@@ -14,9 +14,8 @@ const enableGlobalErrorLogging =
 
 // create the Express app
 const app = express();
-app.use(cors());
 app.use(express.json());
-
+app.use(cors());
 // Add routes.
 app.use('/api', routes);
 

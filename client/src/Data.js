@@ -36,7 +36,7 @@ export default class Data {
   }
 
   // creates a new user,
-  async createNewUser(user) {
+  async createUser(user) {
     const response = await this.api(`/users`, 'POST', user);
     if (response.status === 201) {
       return response.json().then(data => data);

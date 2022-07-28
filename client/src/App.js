@@ -39,6 +39,7 @@ const HeaderWithContext = withContext(Header)
     <div className="App">
        <ul>
          <HeaderWithContext />
+         <Courses />
        </ul>
      </div>
 

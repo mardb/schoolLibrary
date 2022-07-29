@@ -24,6 +24,10 @@ const UserSignIn = () =>{
     })
   }
 
+  cancel = () =>{
+    this.props.history.push('/')
+  }
+
   return(
     <div className="form--centered">
                 <h2>Sign In</h2>

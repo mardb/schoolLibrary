@@ -38,7 +38,7 @@ function App() {
         <HeaderWithContext />
         <Switch>
           <Route exact  path="/" component={ Courses } />
-          <Route exact path="/courses" component={ Courses } />
+          {/* <Route exact path="/courses" component={ Courses } /> */}
           <Route path="/courses/create" component={CreateCourse}/>
           <Route path="/courses/:id" component={ CourseDetail } />
           <Route path='/courses/:id/update' component={ UpdateCourse } />

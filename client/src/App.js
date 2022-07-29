@@ -37,14 +37,14 @@ function App() {
         {/* <Header /> */}
         <HeaderWithContext />
         <Switch>
-          <Route path="/" component={ Courses } />
-          <Route path="/courses" component={ Courses } />
+          <Route exact  path="/" component={ Courses } />
+          <Route exact path="/courses" component={ Courses } />
           <Route path="/courses/:id" component={ CourseDetail } />
           <Route path='/courses' component={ CreateCourse } />
           <Route path='/courses/:id' component={ UpdateCourse } />
-          <Route path="/error" component={ Error } />
+          <Route exact path="/error" component={ Error } />
           <Route path="/forbidden" component={ Forbidden } />
-          <Route path="/notfound" component={ NotFound } />
+          <Route exact  path="/notfound" component={ NotFound } />
           <Route path="*" component={ NotFound } />
         </Switch>
 

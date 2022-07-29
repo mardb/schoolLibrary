@@ -31,7 +31,14 @@ export class Provider extends Component {
       </Context.Provider>  
     );
   }
-
+  getCourses = async () => {
+    const courses = await this.data.getCourses();
+    return courses;
+}
+courseDetail = async (id) => {
+  const course = await this.data.getCourse(id);
+  return course;
+}
   //similar to exercise - re-watch
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password)

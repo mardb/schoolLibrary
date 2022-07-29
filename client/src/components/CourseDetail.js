@@ -1,20 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
 import Context from "../Context";
-import {Link, useParams, useNavigate} from 'react-router-dom'
+import {Link, useParams, useNavigate, useHistory} from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted. 
+import Data from "../Data";
+
 
 //change to stateful component
+
 const CourseDetail = (props) => {
-const [course, setCourse] = useState()
+    
+const history = useHistory();
+const [course, setCourse] = useState(null)
 const [edit, setEdit] = useState(false)
 const {data, authenticatedUser} = useContext(Context)
 const {id} = useParams()
 
 
 useEffect(() =>{
-data.getCourse(id).then(response => setCourse(response)).catch(error => {
+    props.context.actions.courseDetail(id)
+.then(response => setCourse(response))
+.catch(error => {
     console.log(error);
+    history.push('/notfound');
 })
 },[])
 
@@ -29,7 +37,7 @@ data.getCourse(id).then(response => setCourse(response)).catch(error => {
             <button className="button" 
             // href="#"
             >Delete Course</button>
-            <Link to={'/courses'}
+            <Link to={'/'}
             className="button button-secondary" 
             // href="index.html"
             >

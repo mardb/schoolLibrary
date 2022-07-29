@@ -1,9 +1,9 @@
-import config from './config';
-
+// import config from './config';
+import {Buffer} from 'buffer'
 export default class Data {
   api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
-    // const url = 'http://localhost:5000/api' + path;
-    const url = config.apiBaseUrl + path;
+    const url = 'http://localhost:5000/api' + path;
+    // const url = config.apiBaseUrl + path;
 
     const options = {
       method,
@@ -17,7 +17,7 @@ export default class Data {
     }
 
     if (requiresAuth) {    
-      const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
+      const encodedCredentials = Buffer.from(`${credentials.emailAddress}:${credentials.password}`).toString('base64');
       options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     }
     return fetch(url, options);
@@ -48,10 +48,11 @@ export default class Data {
   }
 
   // returns the corresponding course 
-  async getCourse(id){
+  async courseDetail(id){
     const response = await this.api(`/courses/${id}`, 'GET', null);
     if (response.status === 200) {
       return response.json().then(data => {
+
         return data.course
       });
     }
@@ -67,7 +68,9 @@ export default class Data {
   async getCourses(){
     const response = await this.api(`/courses`, 'GET', null);
     if (response.status === 200) {
-      return response.json().then(data => data.courses);
+      return response.json().then(data => {
+        console.log(data.courses[0]);
+        return data.courses});
     }
     else if (response.status === 401) {
       return null;

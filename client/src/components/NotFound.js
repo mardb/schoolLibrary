@@ -3,6 +3,7 @@ import React from "react";
 const NotFound = () =>{
 
 
+
   return(
     <div className="wrap">
       <h2>Not Found</h2>

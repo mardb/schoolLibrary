@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, Router, useNavigate } from 'react-router-dom';
 import { Context } from '../Context'
+import Data from '../Data';
 // allow Courses component to retrieve it's data from the REST API when those components are mounted.
 const Courses = () => {
   const [courses, setCourses] = useState([]);
-  const {data } = useContext(Context)
-console.log(data.courses);
+  const {data} = useContext(Context)
+console.log(data);
 
   useEffect(() => {
    data.getCourses()
-      .then((response) => setCourses(response))
+      .then((response) => setCourses(response)).then(response =>console.log(data.getCourses()))
 
       .catch((error) => {
         console.log(error.message);
@@ -18,12 +19,12 @@ console.log(data.courses);
       });
   },[]);
 
-  const url = 'http://localhost:5000/api'
-  fetch(`${url}/courses`)
-  .then(res => res.json()).then(data => {
-    console.log(data.courses)
-  }
-);
+//   const url = 'http://localhost:5000/api'
+//   fetch(`${url}/courses`)
+//   .then(res => res.json()).then(data => {
+//     console.log(data.courses)
+//   }
+// );
 
 
 

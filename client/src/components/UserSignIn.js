@@ -4,9 +4,9 @@ import Data from '../Data'
 
 
 const UserSignIn = () =>{
-  
-  submit = () => {
-    // const history = useHistory()
+  const history = useHistory()
+  const submit = () => {
+   
     const {context} = this.props;
     const {username, password} = this.state;
     context.actions.signIn(username, password).then(user => {
@@ -15,16 +15,17 @@ const UserSignIn = () =>{
           return {errors:  [ 'Sign-in was unsuccessful']};
         });
       } else {
-        this.props.history.push('/authenticated')
+        history.push('/authenticated')
         console.log(`SUCCESS! ${username} is now signed in!`);
       }
     }).catch(err => {
       console.log(err);
-      this.props.history.push('/error')
+      history.push('/error')
     })
   }
 
-  cancel = () =>{
+  const cancel = () =>{
+  
     this.props.history.push('/')
   }
 
@@ -32,7 +33,7 @@ const UserSignIn = () =>{
     <div className="form--centered">
                 <h2>Sign In</h2>
                 
-                <form>
+                <form cancel=''  > 
                     <label htmlFor="emailAddress">Email Address</label>
                     <input id="emailAddress" name="emailAddress" type="email" value=""/>
                     <label htmlFor="password">Password</label>

@@ -39,13 +39,17 @@ function App() {
         <Switch>
           <Route exact  path="/" component={ Courses } />
           <Route exact path="/courses" component={ Courses } />
+          <Route path="/courses/create" component={CreateCourse}/>
           <Route path="/courses/:id" component={ CourseDetail } />
-          <Route path='/courses' component={ CreateCourse } />
-          <Route path='/courses/:id' component={ UpdateCourse } />
+          <Route path='/courses/:id/update' component={ UpdateCourse } />
+          <Route path="/signin" component={ UserSignIn } />
+          <Route path="/signup" component={ UserSignUp } />
+          <Route path="/signout" component={ UserSignOut} />
           <Route exact path="/error" component={ Error } />
           <Route path="/forbidden" component={ Forbidden } />
           <Route exact  path="/notfound" component={ NotFound } />
           <Route path="*" component={ NotFound } />
+
         </Switch>
 
 

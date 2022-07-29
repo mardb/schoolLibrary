@@ -18,6 +18,7 @@ const CreateCourse = (props) => {
         description:'',
         time:'',
         materials:'', 
+        userId:''
     })
 
     const handleOnChange = (e) => {
@@ -26,6 +27,7 @@ const CreateCourse = (props) => {
         console.log(e.target.value);
         console.log(e.target.name);
         setCourse((course) => ({...course, [name]: value}))
+
     }
    
     const handleOnSubmit = (e) => {
@@ -45,10 +47,13 @@ const CreateCourse = (props) => {
             description,
             time,
             materials, 
-            useId: data.authenticatedUser.id
-            
+            //im getting this from data.js 
+            useId: data.authenticatedUser.user.id
+           
         }
-        console.log(data.authenticatedUser);
+        console.log(data.authenticatedUser.user.id
+            );
+   
     }
   return (
     <div className="wrap">

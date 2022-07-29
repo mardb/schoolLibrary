@@ -13,28 +13,26 @@ const CourseDetail = (props) => {
 const history = useHistory();
 const [course, setCourse] = useState(null)
 const [edit, setEdit] = useState(false)
-const {data, authenticatedUser} = useContext(Context)
+// const {data, authenticatedUser} = useContext(Context)
 const {id} = useParams()
 
-useEffect(() => {
-    data.courseDetail(id)
-       .then((response) => setCourse(response)).then(response =>console.log(data.getCourses()))
- 
-       .catch((error) => {
-         console.log(error.message);
-         // useNavigate('/error');
-         history.pushState('/')
-       });
-   },[]);
-//old useEffect
-// useEffect(() =>{
+const url = 'http://localhost:5000/api'
+fetch(`${url}/courses/${id}`)
+.then(res => res.json()).then(data => {
+  console.log(data)
+  return data
+}
+);
+
+useEffect(() =>{
 //     data.courseDetail(id)
 // .then(response => setCourse(response))
 // .catch(error => {
 //     console.log(error);
 //     history.push('/notfound');
 // })
-// },[])
+},[])
+
 
   return(
 <>

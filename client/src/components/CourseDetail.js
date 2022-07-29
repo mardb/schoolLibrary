@@ -10,15 +10,25 @@ import Data from "../Data";
 
 const CourseDetail = (props) => {
     
-// const history = useHistory();
-// const [course, setCourse] = useState(null)
-// const [edit, setEdit] = useState(false)
-// const {data, authenticatedUser} = useContext(Context)
-// const {id} = useParams()
+const history = useHistory();
+const [course, setCourse] = useState(null)
+const [edit, setEdit] = useState(false)
+const {data, authenticatedUser} = useContext(Context)
+const {id} = useParams()
 
-
+useEffect(() => {
+    data.courseDetail(id)
+       .then((response) => setCourse(response)).then(response =>console.log(data.getCourses()))
+ 
+       .catch((error) => {
+         console.log(error.message);
+         // useNavigate('/error');
+         history.pushState('/')
+       });
+   },[]);
+//old useEffect
 // useEffect(() =>{
-//     props.context.actions.courseDetail(id)
+//     data.courseDetail(id)
 // .then(response => setCourse(response))
 // .catch(error => {
 //     console.log(error);

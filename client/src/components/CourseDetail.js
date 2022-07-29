@@ -64,7 +64,6 @@ const CourseDetail = (props) => {
                     </div>
                 </form>
             </div>
-          
       </>
  
   )

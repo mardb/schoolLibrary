@@ -45,6 +45,7 @@ courseDetail = async (id) => {
     if(user !== null){
       this.setState(() => {
         return {
+          //return user;
           authenticatedUser: user
         }
       })

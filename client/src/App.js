@@ -31,6 +31,9 @@ function App() {
 
   const HeaderWithContext = withContext(Header);
   const CoursesWithContext = withContext(Courses);
+  const UserSignUpWithContext = withContext(UserSignUp)
+  const UserSignInWithContext = withContext(UserSignIn)
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -42,12 +45,12 @@ function App() {
           <Route path="/courses/create" component={CreateCourse}/>
           <Route path="/courses/:id" component={ CourseDetail } />
           <Route path='/courses/:id/update' component={ UpdateCourse } />
-          <Route path="/signin" component={ UserSignIn } />
-          <Route path="/signup" component={ UserSignUp } />
+          <Route path="/signin" component={ UserSignInWithContext } />
+          <Route path="/signup" component={ UserSignUpWithContext } />
           <Route path="/signout" component={ UserSignOut} />
           <Route exact path="/error" component={ Error } />
           <Route path="/forbidden" component={ Forbidden } />
-          <Route exact  path="/notfound" component={ NotFound } />
+          <Route component={ NotFound } />
           <Route path="*" component={ NotFound } />
 
         </Switch>

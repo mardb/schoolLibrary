@@ -1,6 +1,28 @@
-import React from "react";
+import React, {Component} from "react";
+import {Link, useHistory} from 'react-router-dom'
+import Data from '../Data'
+
 
 const UserSignIn = () =>{
+  
+  submit = () => {
+    // const history = useHistory()
+    const {context} = this.props;
+    const {username, password} = this.state;
+    context.actions.signIn(username, password).then(user => {
+      if(user === null){
+        this.setState(() => {
+          return {errors:  [ 'Sign-in was unsuccessful']};
+        });
+      } else {
+        this.props.history.push('/authenticated')
+        console.log(`SUCCESS! ${username} is now signed in!`);
+      }
+    }).catch(err => {
+      console.log(err);
+      this.props.history.push('/error')
+    })
+  }
 
   return(
     <div className="form--centered">

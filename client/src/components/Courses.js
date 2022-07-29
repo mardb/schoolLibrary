@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, Router, useNavigate } from 'react-router-dom';
+import { Link, 
+    // Router, useNavigate 
+} from 'react-router-dom';
 import { Context } from '../Context'
-import Data from '../Data';
+// import Data from '../Data';
 // allow Courses component to retrieve it's data from the REST API when those components are mounted.
 const Courses = () => {
   const [courses, setCourses] = useState([]);

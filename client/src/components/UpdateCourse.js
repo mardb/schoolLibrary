@@ -1,38 +1,42 @@
-import React, { useEffect, useContext,  useState }  from 'react';
-import Context from '../Context';
+import React 
+// , { useEffect, useContext,  useState }  
+from 'react';
+// import Context from '../Context';
 import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
-import Data from '../Data';
+// import Data from '../Data';
+// import CreateCourse from './CreateCourse';
 
 const UpdateCourse = (props) => {
-    const [courses, setCourses] = useState([]);
-    const {data} = useContext(Context)
-  console.log(data);
+
+//     const [courses, setCourses] = useState([]);
+//     const {data} = useContext(Context)
+//   console.log(data);
   
-    const history = useHistory();
-    const [course, setCourse] = useState(null);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [time, setTime] = useState('');
-    const [materials, setMaterials]  = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [edit, setEdit] = useState(false);
-    // const {data, authenticatedUser} = useContext(Context)
-    const { id } = useParams();
+//     const history = useHistory();
+//     const [course, setCourse] = useState(null);
+//     const [title, setTitle] = useState('');
+//     const [description, setDescription] = useState('');
+//     const [time, setTime] = useState('');
+//     const [materials, setMaterials]  = useState('');
+//     const [isLoading, setIsLoading] = useState(true);
+//     const [edit, setEdit] = useState(false);
+//     // const {data, authenticatedUser} = useContext(Context)
+//     const { id } = useParams();
 
-    useEffect(()=>{
-        const url = 'http://localhost:5000/api';
-        fetch(`${url}/courses/${id}/update`)
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data.course);
-            setCourse(data.course);
-            setIsLoading(false);
-          });
-    },[]);
-
+//     useEffect(()=>{
+//         const url = 'http://localhost:5000/api';
+//         fetch(`${url}/courses/${id}/update`)
+//           .then((res) => res.json())
+//           .then((data) => {
+//             console.log(data.course);
+//             // updateCourse(data.course);
+//             setIsLoading(false);
+//           });
+//     },[]);
     
+//     data.createCourse().then()
 
   return(
     <div className="wrap">
@@ -56,7 +60,8 @@ const UpdateCourse = (props) => {
                     <textarea id="materialsNeeded" name="materialsNeeded">* 1/2 x 3/4 inch parting strip&#13;&#13;* 1 x 2 common pine&#13;&#13;* 1 x 4 common pine&#13;&#13;* 1 x 10 common pine&#13;&#13;* 1/4 inch thick lauan plywood&#13;&#13;* Finishing Nails&#13;&#13;* Sandpaper&#13;&#13;* Wood Glue&#13;&#13;* Wood Filler&#13;&#13;* Minwax Oil Based Polyurethane</textarea>
                 </div>
             </div>
-            <button className="button" type="submit">Update Course</button><button className="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
+            <button className="button" type="submit">Update Course</button>
+            <Link className="button button-secondary" onclick="event.preventDefault()" to={'/'}>Cancel</Link>
         </form>
     </div>
   )

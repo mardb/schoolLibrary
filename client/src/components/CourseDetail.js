@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Context from '../Context';
+import React, { 
+    // useContext, 
+    useEffect, useState } from 'react';
+// import Context from '../Context';
 import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
-import Data from '../Data';
+// import Data from '../Data';
 
 //change to stateful component
 

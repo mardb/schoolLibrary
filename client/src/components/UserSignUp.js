@@ -20,7 +20,7 @@ const UserSignUp = () => {
             </button>
             <button
               className="button button-secondary"
-              onclick="event.preventDefault(); location.href='index.html';"
+              onclick="event.preventDefault();" to={'/'}
             >
               Cancel
             </button>
@@ -28,7 +28,7 @@ const UserSignUp = () => {
             <p>
               {' '}
               Already have a user account? Click here to{' '}
-              <a to="sign-in.html">sign in</a>!
+              <a to={'/signin'}>sign in</a>!
             </p> 
       </div> 
     );

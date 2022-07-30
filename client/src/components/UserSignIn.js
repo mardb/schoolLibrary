@@ -1,10 +1,21 @@
 import React, {Component} from "react";
 import {Link, useHistory} from 'react-router-dom'
 import Data from '../Data'
-
+import { Context } from "../Context";
 
 const UserSignIn = () =>{
-  const history = useHistory()
+  const history = useHistory();
+  const { data, actions, authenticatedUser, createUser, context } = useContext(Context);
+
+  const [user, setUser] = useState({
+    emailAddress: '',
+    password: '',
+    errors:[]
+  });
+  const [isLoading, setIsLoading] = useState(true);
+
+
+
   const submit = () => {
    
     const {context} = this.props;

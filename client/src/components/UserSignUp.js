@@ -22,6 +22,7 @@ const UserSignUp = (props) => {
     console.log(e.target.value);
     console.log(e.target.name);
     setUser({...user, [name]: value });
+    console.log(setUser)
   };
 
   const handleSubmit = (e) => {

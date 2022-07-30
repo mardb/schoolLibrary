@@ -6,39 +6,51 @@ import UserSignIn from "./UserSignIn";
 //make stateful component
 const CreateCourse = (props) => {
     const history = useHistory();
+    const { data, actions, authenticatedUser, createUser } = useContext(Context);
+    console.log(data);
+    console.log(actions);
+    console.log(authenticatedUser);
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
     const [time, setTime] = useState(null)
     const [materials, setMaterials] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
     const [errors, setErrors] = useState([]);
-    const {data, authenticatedUser} = useContext(Context)
     const [course, setCourse] = useState({
         title:'',
         description:'',
-        time:'',
-        materials:'', 
-        userId:''
+        estimatedTime:'',
+        materialsNeeded:'', 
+        // firstName:authenticatedUser.id,
+        // lastName:authenticatedUser.lastName,
+        // userId: authenticatedUser.userId,
     })
 
-    const handleOnChange = (e) => {
+    const handleChange = (e) => {
 
         const { name, value }  = e.target
         console.log(e.target.value);
         console.log(e.target.name);
-        setCourse((course) => ({...course, [name]: value}))
+        setCourse({...course, [name]: value})
 
     }
    
-    const handleOnSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         data.createCourse(course, authenticatedUser).then(errors => {
             if(errors.length){
             setErrors(errors);
             } else {
-                history.push('/')
+                actions.createCourse(
+                    course.title, 
+                    course.password, 
+                    course.description,
+                    course.estimatedTime,
+                    course.materialsNeeded )
+                .then(() => history.push('/'))
             }
-        }).catch(error => {
+        }).catch(err => {
+            console.log(err);
             history.push("/error")
         })
 
@@ -55,6 +67,8 @@ const CreateCourse = (props) => {
             );
    
     }
+
+
   return (
     <div className="wrap">
     <h2>Create Course</h2>
@@ -65,28 +79,28 @@ const CreateCourse = (props) => {
             <li>Please provide a value for "Description"</li>
         </ul>
     </div>
-    <form onSubmit={handleOnSubmit}>
+    <form onSubmit={handleSubmit}>
         <div className="main--flex">
             <div>
                <label htmlFor="courseTitle">Course Title</label>
-               <input id="title" name="title" type="text" value={course.title} onChange={handleOnChange}
+               <input id="title" name="title" type="text" value={course.title} onChange={handleChange}
             />
                 {/* <input id="courseTitle" name="courseTitle" type="text" value={course.title} onChange={handleOnChange}/> */}
 
                 <p>By Joe Smith</p>
 
                <label htmlFor="courseDescription">Course Description</label>
-                <textarea id="description" name="description" value={course.description} onChange={handleOnChange}></textarea>
+                <textarea id="description" name="description" value={course.description} onChange={handleChange}></textarea>
             </div>
             <div>
                <label htmlFor="estimatedTime">Estimated Time</label>
-                <input id="estimatedTime" name="time" type="text" value={course.time} onChange={handleOnChange}/>
+                <input id="estimatedTime" name="time" type="text" value={course.time} onChange={handleChange}/>
 
                <label htmlFor="materialsNeeded">Materials Needed</label>
-                <textarea id="materialsNeeded" name="materials" value={course.materials} onChange={handleOnChange}></textarea>
+                <textarea id="materialsNeeded" name="materials" value={course.materials} onChange={handleChange}></textarea>
             </div>
         </div>
-        <button className="button" type="submit" onClick={handleOnSubmit}>Create Course</button>
+        <button className="button" type="submit" onClick={handleSubmit}>Create Course</button>
         <Link className="button button-secondary" to={"/"}>
           Cancel
         </Link>

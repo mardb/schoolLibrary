@@ -48,10 +48,11 @@ import PrivateRoute from './PrivateRoute';
           <Route path="/signout" component={ UserSignOut} />
           <Route exact path="/error" component={ Error } />
           <Route path="/forbidden" component={ Forbidden } />
-          <Route component={ NotFound } />
-          <Route path="*" component={ NotFound } />
+
           <Route path="/signin" component={ UserSignInWithContext } />
           <Route path="/signup" component={ UserSignUpWithContext } />
+          <Route component={ NotFound } />
+          <Route path="*" component={ NotFound } />
         </Switch>
 
 

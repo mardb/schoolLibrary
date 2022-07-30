@@ -17,7 +17,7 @@ const UserSignIn = () => {
   });
   // const [isLoading, setIsLoading] = useState(true);
 
-  const submit = () => {
+  const submit = (e) => {
     e.preventDefault()
     // const { context } = this.props;
     const { emailAddress, password } = user;

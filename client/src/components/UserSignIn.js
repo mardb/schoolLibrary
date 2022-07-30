@@ -8,9 +8,9 @@ const UserSignIn = () => {
   // const { data, actions, authenticatedUser, createUser, context } = useContext(Context);
 
   const [user, setUser] = useState({
-  //   emailAddress: '',
-  //   password: '',
-  //   errors:[]
+    emailAddress: '',
+    password: '',
+    errors:[]
   });
   // const [isLoading, setIsLoading] = useState(true);
 
@@ -34,6 +34,15 @@ const UserSignIn = () => {
         history.push('/error');
       });
   };
+
+  const handleChange = (e) => {
+
+    const { name, value }  = e.target
+    console.log(e.target.value);
+    console.log(e.target.name);
+    setUser({...user, [name]: value})
+
+}
 
   const cancel = (e) => {
     e.preventDefault();

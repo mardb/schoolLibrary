@@ -5,7 +5,10 @@ import { Context } from '../Context';
 
 const UserSignIn = () => {
   const history = useHistory();
-  // const { data, actions, authenticatedUser, createUser, context } = useContext(Context);
+  const { 
+ actions, 
+    // data, authenticatedUser, createUser, context 
+  } = useContext(Context);
 
   const [user, setUser] = useState({
     emailAddress: '',
@@ -15,18 +18,19 @@ const UserSignIn = () => {
   // const [isLoading, setIsLoading] = useState(true);
 
   const submit = () => {
-    const { context } = this.props;
-    const { username, password } = this.state;
-    context.actions
-      .signIn(username, password)
+    e.preventDefault()
+    // const { context } = this.props;
+    const { emailAddress, password } = user;
+    actions.signIn(emailAddress, password)
       .then((user) => {
         if (user === null) {
+          
           this.setState(() => {
             return { errors: ['Sign-in was unsuccessful'] };
           });
         } else {
-          history.push('/authenticated');
-          console.log(`SUCCESS! ${username} is now signed in!`);
+          history.push('/');
+          console.log(`SUCCESS! ${emailAddress} is now signed in!`);
         }
       })
       .catch((err) => {

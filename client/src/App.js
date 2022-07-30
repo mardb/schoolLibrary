@@ -16,23 +16,23 @@ import CourseDetail from './components/CourseDetail'; //
 import NotFound from './components/NotFound'; //
 import Forbidden from './components/Forbidden'; //
 import Error from './components/Error'; //
-import PrivateRoute from './PrivateRoute'; //
 
 import withContext from './Context';
-
-function App() {
-  //   const url = config.apiBaseUrl
-  //   const url = 'http://localhost:5000/api'
-  //   fetch(`${url}/courses`)
-  //   .then(res => res.json()).then(data => {
-  //     console.log(data.courses)
-  //   }
-  // );
+import PrivateRoute from './PrivateRoute';
 
   const HeaderWithContext = withContext(Header);
   const CoursesWithContext = withContext(Courses);
   const UserSignUpWithContext = withContext(UserSignUp)
   const UserSignInWithContext = withContext(UserSignIn)
+  
+  function App() {
+    //   const url = config.apiBaseUrl
+    //   const url = 'http://localhost:5000/api'
+    //   fetch(`${url}/courses`)
+    //   .then(res => res.json()).then(data => {
+    //     console.log(data.courses)
+    //   }
+    // );
 
   return (
     <BrowserRouter>
@@ -45,14 +45,13 @@ function App() {
           <Route path="/courses/create" component={CreateCourse}/>
           <Route path="/courses/:id" component={ CourseDetail } />
           <Route path='/courses/:id/update' component={ UpdateCourse } />
-          <Route path="/signin" component={ UserSignInWithContext } />
-          <Route path="/signup" component={ UserSignUpWithContext } />
           <Route path="/signout" component={ UserSignOut} />
           <Route exact path="/error" component={ Error } />
           <Route path="/forbidden" component={ Forbidden } />
           <Route component={ NotFound } />
           <Route path="*" component={ NotFound } />
-
+          <Route path="/signin" component={ UserSignInWithContext } />
+          <Route path="/signup" component={ UserSignUpWithContext } />
         </Switch>
 
 

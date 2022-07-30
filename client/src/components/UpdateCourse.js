@@ -9,6 +9,7 @@ import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
 // import CreateCourse from './CreateCourse';
 
 const UpdateCourse = (props) => {
+    let history = useHistory()
 
 //     const [courses, setCourses] = useState([]);
 //     const {data} = useContext(Context)
@@ -37,7 +38,10 @@ const UpdateCourse = (props) => {
 //     },[]);
     
 //     data.createCourse().then()
-
+const cancel  = (e) =>{
+e.preventDefault()
+history.pushState('/')
+}
   return(
     <div className="wrap">
         <h2>Update Course</h2>
@@ -61,7 +65,7 @@ const UpdateCourse = (props) => {
                 </div>
             </div>
             <button className="button" type="submit">Update Course</button>
-            <Link className="button button-secondary" onclick="event.preventDefault()" to={'/'}>Cancel</Link>
+            <Link className="button button-secondary" onClick={cancel} to={'/'}>Cancel</Link>
         </form>
     </div>
   )

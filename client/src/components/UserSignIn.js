@@ -24,9 +24,9 @@ const UserSignIn = () =>{
     })
   }
 
-  const cancel = () =>{
-  
-    this.props.history.push('/')
+  const cancel = (e) =>{
+  e.preventDefault()
+    history.push('/')
   }
 
   return(
@@ -38,7 +38,8 @@ const UserSignIn = () =>{
                     <input id="emailAddress" name="emailAddress" type="email" value=""/>
                     <label htmlFor="password">Password</label>
                     <input id="password" name="password" type="password" value=""/>
-                    <button className="button" type="submit">Sign In</button><button className="button button-secondary" onClick="event.preventDefault()" to={'/'}>Cancel</button>
+                    <button className="button" type="submit" onClick={submit}>Sign In</button>
+                    <button className="button button-secondary" onClick={cancel} to={'/'}>Cancel</button>
                 </form>
                 <p>Don't have a user account? Click here to <a to={'/signup'}>sign up</a>!</p>
                 

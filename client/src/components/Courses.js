@@ -29,16 +29,19 @@ const Courses = () => {
 //   }
 // );
 
-if (!authenticatedUser) {
-  return (
-    <div className="form--centered">
-      <h2>You must be signed in to view this page.</h2>
-      <Link to="/signin">Sign in</Link>
-    </div>
-  );
-}
+// if (!authenticatedUser) {
+//   return (
+//     <div className="form--centered">
+//       <h2>You must be signed in to view this page.</h2>
+//       <Link to="/signin">Sign in</Link>
+//     </div>
+//   );
+// }
 
-if (!courses && authenticatedUser) {
+// if (!courses && authenticatedUser) {
+//   return <div>Loading...</div>;
+// }
+if (!courses ) {
   return <div>Loading...</div>;
 }
 
@@ -64,7 +67,7 @@ if (!courses && authenticatedUser) {
                 <h3 className="course--title">Course Title</h3>
                  </Link> */}
                     
-             
+             {authenticatedUser ? (
       <Link to={`/courses/create`} className="course--module course--add--module">
         <span className="course--add--title">
           <svg
@@ -80,6 +83,9 @@ if (!courses && authenticatedUser) {
           New Course
         </span>
       </Link> 
+             ) : (
+               <></>
+             )}
     </div>
     </React.Fragment>
   );

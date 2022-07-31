@@ -3,23 +3,9 @@ import { Link } from 'react-router-dom';
 import { Context } from '../Context';
 
 //make stateless component later
-const Header = (props) => {
+const Header = () => {
   // const that = useContext(Context.Context)
-  const { data, 
-    actions, 
-    authenticatedUser, 
-    // createUser, 
-    // context 
-  } = useContext(Context);
-  // console.log(useContext(Context));
-  const authUser = authenticatedUser;
-  console.log({data, 
-    actions, 
-    authenticatedUser, 
-    authUser, 
-    actionsAuthUser:actions.authenticatedUser});
-  console.log(useContext(Context));
-  console.log(authUser);
+  const { authenticatedUser } = useContext(Context);
   
   return (
     <header>
@@ -29,9 +15,9 @@ const Header = (props) => {
         </h1>
         <nav>
           <ul className="header--signedout">
-            {authUser ? (
+            {authenticatedUser ? (
               <React.Fragment>
-                <span> Welcome, {authUser.firstName}!</span>
+                <span> Welcome, {authenticatedUser.firstName}!</span>
                 <li>
                   <Link to={'/signout'}>Sign Out</Link>
                 </li>

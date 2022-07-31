@@ -3,25 +3,37 @@ import Data from './Data';
 
 export const Context = React.createContext(); 
 
+const initialState = {
+  authenticatedUser: null,
+  courses: null,
+  course: null,
+};
+
 export class Provider extends Component {
 
   constructor() {
     super();
     this.data = new Data();
     //TODO: add new user fields fn ln email pswd
-    this.state = {
-      authenticatedUser: null
-    }
+    this.state = initialState;
+    // this.state = {
+    //   authenticatedUser: null
+    // }
   }
 
   render() {
-    const { authenticatedUser } = this.state;
+    const { authenticatedUser, course, courses } = this.state;
     const value = {
       authenticatedUser,
+      course,
+      courses,
       data: this.data,
       actions: {
         signIn: this.signIn,
-        signOut: this.signOut
+        signOut: this.signOut,
+        getCourses: this.getCourses,
+        courseDetail: this.courseDetail,
+        createCourse: this.createCourse,
       },
     };
 
@@ -33,22 +45,35 @@ export class Provider extends Component {
   }
   getCourses = async () => {
     const courses = await this.data.getCourses();
-    return courses;
+    this.setState({courses});
+    // return courses;
 }
 courseDetail = async (id) => {
   const course = await this.data.getCourse(id);
-  return course;
+  this.setState({ course });
+  // return course;
+}
+createCourse =async (course) => {
+  const {authenticatedUser} =this.state;
+
+try{
+  await this.data.createCourse(course, authenticatedUser);
+  await  this.getCourses();
+} catch(error){
+  throw error;
+}
 }
   //similar to exercise - re-watch
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password)
     if(user !== null){
-      this.setState(() => {
-        return {
-          //return user;
-          authenticatedUser: user
-        }
-      })
+      this.setState({ authenticatedUser: user });
+      // // this.setState(() => {
+      //   return {
+      //     //return user;
+      //     authenticatedUser: user
+      //   }
+      // })
     } else {
       console.log('invalid username');
     } 
@@ -57,7 +82,7 @@ courseDetail = async (id) => {
   }
 
   signOut = () => {
-    this.setState({authenticatedUser : null})
+    this.setState(initialState)
   }
 }
 

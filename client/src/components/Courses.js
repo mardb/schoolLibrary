@@ -6,19 +6,20 @@ import { Context } from '../Context'
 // import Data from '../Data';
 // allow Courses component to retrieve it's data from the REST API when those components are mounted.
 const Courses = () => {
-  const [courses, setCourses] = useState([]);
-  const {data} = useContext(Context)
-console.log(data);
+  const { actions, authenticatedUser, courses } = useContext(Context);
+  // const [courses, setCourses] = useState([]);
+  // const {data} = useContext(Context)
+// console.log(data);
 
   useEffect(() => {
-   data.getCourses()
-      .then((response) => setCourses(response)).then(response =>console.log(data.getCourses()))
+   actions.getCourses()
+      // .then((response) => setCourses(response)).then(response =>console.log(data.getCourses()))
 
-      .catch((error) => {
-        console.log(error.message);
-        // useNavigate('/error');
-        // history.pushState('/')
-      });
+      // .catch((error) => {
+      //   console.log(error.message);
+      //   // useNavigate('/error');
+      //   // history.pushState('/')
+      // });
   },[]);
 
 //   const url = 'http://localhost:5000/api'
@@ -28,6 +29,18 @@ console.log(data);
 //   }
 // );
 
+if (!authenticatedUser) {
+  return (
+    <div className="form--centered">
+      <h2>You must be signed in to view this page.</h2>
+      <Link to="/signin">Sign in</Link>
+    </div>
+  );
+}
+
+if (!courses && authenticatedUser) {
+  return <div>Loading...</div>;
+}
 
 
   return (
@@ -37,7 +50,6 @@ console.log(data);
             <Link to={`/courses/${course.id}`} 
             key={index} //for map
              className="course--module course--link" 
-            
             >
             <h2 className="course--label">Course</h2>
             <h3 className="course--title">{course.title}</h3>

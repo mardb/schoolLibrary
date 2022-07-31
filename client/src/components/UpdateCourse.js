@@ -1,41 +1,37 @@
 import React 
-// , { useEffect, useContext,  useState }  
+, { useEffect, useContext,  useState }  
 from 'react';
-// import Context from '../Context';
+import Context from '../Context';
 import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
 // import ReactMarkdown from 'react-markdown';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
-// import Data from '../Data';
-// import CreateCourse from './CreateCourse';
+import Data from '../Data';
 
 const UpdateCourse = (props) => {
     let history = useHistory()
+    // const {data, actions} = useContext(Context)
+    const [course, setCourse] = useState(null);//look up prev state
 
-//     const [courses, setCourses] = useState([]);
-//     const {data} = useContext(Context)
-//   console.log(data);
-  
-//     const history = useHistory();
-//     const [course, setCourse] = useState(null);
 //     const [title, setTitle] = useState('');
 //     const [description, setDescription] = useState('');
 //     const [time, setTime] = useState('');
 //     const [materials, setMaterials]  = useState('');
-//     const [isLoading, setIsLoading] = useState(true);
-//     const [edit, setEdit] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [edit, setEdit] = useState(false);
 //     // const {data, authenticatedUser} = useContext(Context)
-//     const { id } = useParams();
+    const { id } = useParams();
 
-//     useEffect(()=>{
-//         const url = 'http://localhost:5000/api';
-//         fetch(`${url}/courses/${id}/update`)
-//           .then((res) => res.json())
-//           .then((data) => {
-//             console.log(data.course);
-//             // updateCourse(data.course);
-//             setIsLoading(false);
-//           });
-//     },[]);
+
+    useEffect((data)=>{
+        const url = 'http://localhost:5000/api';
+        fetch(`${url}/courses/${id}/update`)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data.course);
+            // updateCourse(data.course);
+            setIsLoading(false);
+          });
+    },[]);
     
 //     data.createCourse().then()
 const cancel  = (e) =>{

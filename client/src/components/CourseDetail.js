@@ -17,7 +17,7 @@ const CourseDetail = (props) => {
   // const {data, authenticatedUser} = useContext(Context)
   const { id } = useParams();
 
-  useEffect(() => {
+  useEffect((data) => {
     const url = 'http://localhost:5000/api';
     fetch(`${url}/courses/${id}`)
       .then((res) => res.json())

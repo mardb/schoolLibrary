@@ -6,7 +6,7 @@ const UserSignOut = ({context}) => {
 const {push} = useHistory();
 
 useEffect(() => {
-  context.actions.UserSignOut();
+  context.actions.signOut();
   push('/')
 }, [])
   return(

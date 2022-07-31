@@ -5,7 +5,7 @@ import UserSignIn from "./UserSignIn";
 
 //make stateful component
 const CreateCourse = (props) => {
-    // const history = useHistory();
+    const history = useHistory();
     const { data, actions, authenticatedUser, createUser } = useContext(Context);
     // const [isLoading, setIsLoading] = useState(true);
     const [errors, setErrors] = useState([]);
@@ -32,6 +32,7 @@ const CreateCourse = (props) => {
         e.preventDefault();
         try {
             await actions.createCourse(formerState);
+            history.push('/');
           } catch (error) {
             console.log(error);
             setErrors([error]);

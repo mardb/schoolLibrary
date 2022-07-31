@@ -53,6 +53,7 @@ courseDetail = async (id) => {
   this.setState({ course });
   // return course;
 }
+
 createCourse =async (course) => {
   const {authenticatedUser} =this.state;
 

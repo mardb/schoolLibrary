@@ -1,5 +1,5 @@
 import React 
-, { useEffect, useContext,  useState }  
+, { useEffect, useContext,  useState, prevState}  
 from 'react';
 import Context from '../Context';
 import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
@@ -7,11 +7,27 @@ import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
 import Data from '../Data';
 
-const UpdateCourse = () => {
+const UpdateCourse = (props) => {
     let history = useHistory()
-    const {data, actions, authenticatedUser} = useContext(Context)
-    const [course, setCourse] = useState({});//look up prev state
+    // const { 
+      // data, 
+      // actions, 
+      // authenticatedUser, 
+      // createUser 
+    // } = useContext(Context);
+   
+    console.log(props);
+   
+    const [course, setCourse] = useState({
+        title: '',
+   
+        description:'',
+        time:'', 
+        materials:'',
+        
+    });//look up prev state
     const [edit, setEdit] = useState(false);
+    const [errors, setErrors] = useState([])
     const { id } = useParams();
 
 //     const [title, setTitle] = useState('');
@@ -20,29 +36,30 @@ const UpdateCourse = () => {
 //     const [materials, setMaterials]  = useState('');
    
 
-useEffect(()=>{
-    data.courseDetail(id)
-      .then((course) => { setCourse(prevState)
-          console.log(data.course);
-        }).catch((err) => console.log(err))
-},[data, id]);
+// useEffect(()=>{
+//     actions.courseDetail(id)
+//       .then((course) => { setCourse(prevState)
+        
+        
+//         }).catch((err) => console.log(err))
+// },[]);
 
 //similar to signup
 const handleSubmit = (e) => {
     e.preventDefault();
 
-    data.UpdateCourse(course, authenticatedUser)
-    .then((errors) => {
-      if (errors.length) {
-        setErrors(errors);
-      } else {
-        history.push('/')
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      history.push('/error');
-    })
+    // actions.UpdateCourse(course, authenticatedUser)
+    // .then((errors) => {
+    //   if (errors.length) {
+    //     setErrors(errors);
+    //   } else {
+    //     history.push('/')
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    //   history.push('/error');
+    // })
   };
 
   const cancel = () => {
@@ -53,12 +70,9 @@ const handleSubmit = (e) => {
 const handleChange= (e)=>{
     e.preventDefault()
     const {name, value} = e.target;
-    data.setCourse((prevState) => ({
+    setCourse((prevState) => ({
         ...prevState,
-        course:{
-            ...prevState.course,
-            [name]: value
-        }
+        [name]: value
     }))
 }
 
@@ -70,7 +84,7 @@ const handleChange= (e)=>{
             <div className="main--flex">
                 <div>
                     <label htmlFor="courseTitle">Course Title</label>
-                    <input id="courseTitle" name="courseTitle" type="text" value={course.title}/>
+                    <input id="courseTitle" name={course} type="text" value={course.title}/>
 
                     <p>By Joe Smith</p>
 

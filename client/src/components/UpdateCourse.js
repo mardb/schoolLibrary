@@ -7,36 +7,59 @@ import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
 import Data from '../Data';
 
-const UpdateCourse = (props) => {
+const UpdateCourse = () => {
     let history = useHistory()
-    // const {data, actions} = useContext(Context)
-    const [course, setCourse] = useState(null);//look up prev state
+    const {data, actions, authenticatedUser} = useContext(Context)
+    const [course, setCourse] = useState({});//look up prev state
+    const [edit, setEdit] = useState(false);
+    const { id } = useParams();
 
 //     const [title, setTitle] = useState('');
 //     const [description, setDescription] = useState('');
 //     const [time, setTime] = useState('');
 //     const [materials, setMaterials]  = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [edit, setEdit] = useState(false);
-//     // const {data, authenticatedUser} = useContext(Context)
-    const { id } = useParams();
+   
+
+useEffect(()=>{
+    data.courseDetail(id)
+      .then((course) => { setCourse(prevState)
+          console.log(data.course);
+        }).catch((err) => console.log(err))
+},[data, id]);
+
+//similar to signup
+const handleSubmit = (e) => {
+    e.preventDefault();
+
+    data.UpdateCourse(course, authenticatedUser)
+    .then((errors) => {
+      if (errors.length) {
+        setErrors(errors);
+      } else {
+        history.push('/')
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      history.push('/error');
+    })
+  };
+
+  const cancel = () => {
+    history.push('/');
+  };
 
 
-    useEffect((data)=>{
-        const url = 'http://localhost:5000/api';
-        fetch(`${url}/courses/${id}/update`)
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data.course);
-            // updateCourse(data.course);
-            setIsLoading(false);
-          });
-    },[]);
-    
-//     data.createCourse().then()
-const cancel  = (e) =>{
-e.preventDefault()
-history.push('/')
+const handleChange= (e)=>{
+    e.preventDefault()
+    const {name, value} = e.target;
+    data.setCourse((prevState) => ({
+        ...prevState,
+        course:{
+            ...prevState.course,
+            [name]: value
+        }
+    }))
 }
 
 
@@ -47,7 +70,7 @@ history.push('/')
             <div className="main--flex">
                 <div>
                     <label htmlFor="courseTitle">Course Title</label>
-                    <input id="courseTitle" name="courseTitle" type="text" value="Build a Basic Bookcase"/>
+                    <input id="courseTitle" name="courseTitle" type="text" value={course.title}/>
 
                     <p>By Joe Smith</p>
 

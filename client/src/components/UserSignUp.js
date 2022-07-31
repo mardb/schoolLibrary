@@ -86,7 +86,7 @@ const UserSignUp = (props) => {
         <button className="button" onSubmit={handleSubmit}>
           Sign Up
         </button>
-        <button className="button button-secondary" onChange={cancel}>
+        <button className="button button-secondary" onChange={cancel} to={'/'}>
           Cancel
         </button>
       </form>

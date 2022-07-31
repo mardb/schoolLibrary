@@ -40,8 +40,10 @@ const UpdateCourse = (props) => {
 //     data.createCourse().then()
 const cancel  = (e) =>{
 e.preventDefault()
-history.pushState('/')
+history.push('/')
 }
+
+
   return(
     <div className="wrap">
         <h2>Update Course</h2>

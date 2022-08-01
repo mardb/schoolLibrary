@@ -17,10 +17,10 @@ export default class Data {
       options.body = JSON.stringify(body);
     }
 
-  //   if (requiresAuth) {    
-  //     const encodedCredentials = Buffer.from(`${credentials.emailAddress}:${credentials.password}`).toString('base64');
-  //     options.headers['Authorization'] = `Basic ${encodedCredentials}`;
-  //   }
+    // if (requiresAuth) {    
+    //   const encodedCredentials = Buffer.from(`${credentials.emailAddress}:${credentials.password}`).toString('base64');
+    //   options.headers['Authorization'] = `Basic ${encodedCredentials}`;
+    // }
     return fetch(url, options);
   }
   

@@ -7,16 +7,16 @@ import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
 import Data from '../Data';
 
-const UpdateCourse = (props) => {
+const UpdateCourse = () => {
     let history = useHistory()
-    // const { 
-      // data, 
-      // actions, 
+    const { 
+      data, 
+      actions, 
       // authenticatedUser, 
       // createUser 
-    // } = useContext(Context);
+    } = useContext(Context);
    
-    console.log(props);
+
    
     const [course, setCourse] = useState({
         title: '',
@@ -36,13 +36,13 @@ const UpdateCourse = (props) => {
 //     const [materials, setMaterials]  = useState('');
    
 
-// useEffect(()=>{
-//     actions.courseDetail(id)
-//       .then((course) => { setCourse(prevState)
+useEffect(()=>{
+    data.courseDetail(id)
+      .then((course) => { setCourse(prevState)
         
         
-//         }).catch((err) => console.log(err))
-// },[]);
+        }).catch((err) => console.log(err))
+},[]);
 
 //similar to signup
 const handleSubmit = (e) => {

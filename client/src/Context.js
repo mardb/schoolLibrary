@@ -68,7 +68,13 @@ try{
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password)
     if(user !== null){
-      this.setState({ authenticatedUser: user });
+      this.setState(() => {
+        user.password = password;
+        return {
+          authenticatedUser: user,
+        }
+      })
+      // this.setState({ authenticatedUser: user });
       // // this.setState(() => {
       //   return {
       //     //return user;

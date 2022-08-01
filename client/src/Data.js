@@ -17,12 +17,12 @@ export default class Data {
       options.body = JSON.stringify(body);
     }
 
-    if (requiresAuth) {    
-      const encodedCredentials = Buffer.from(`${credentials.emailAddress}:${credentials.password}`).toString('base64');
-      options.headers['Authorization'] = `Basic ${encodedCredentials}`;
-    }
-    return fetch(url, options);
-  }
+  //   if (requiresAuth) {    
+  //     const encodedCredentials = Buffer.from(`${credentials.emailAddress}:${credentials.password}`).toString('base64');
+  //     options.headers['Authorization'] = `Basic ${encodedCredentials}`;
+  //   }
+  //   return fetch(url, options);
+  // }
   
 //  all properties and values for the currently authenticated User 
   async getUser(emailAddress, password) {

@@ -13,6 +13,7 @@ const UpdateCourse = () => {
       data, 
       actions, 
       authenticatedUser, 
+
     } = useContext(Context);
    
     const [course, setCourse] = useState({
@@ -39,18 +40,18 @@ useEffect(()=>{
 const handleSubmit = (e) => {
     e.preventDefault();
 
-    actions.UpdateCourse(course, authenticatedUser)
-    .then((errors) => {
-      if (errors.length) {
-        setErrors(errors);
-      } else {
-        history.push('/courses/${id}')
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      history.push('/error');
-    })
+    // actions.UpdateCourse(course, authenticatedUser)
+    // .then((errors) => {
+    //   if (errors.length) {
+    //     setErrors(errors);
+    //   } else {
+    //     history.push('/')
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    //   history.push('/error');
+    // })
   };
 
   const cancel = () => {
@@ -61,8 +62,8 @@ const handleSubmit = (e) => {
 const handleChange= (e)=>{
     e.preventDefault()
     const {name, value} = e.target;
-    setCourse((course) => ({
-        ...course,
+    setCourse((prevState) => ({
+        ...prevState,
         [name]: value
     }))
 }

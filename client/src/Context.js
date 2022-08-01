@@ -65,9 +65,10 @@ try{
 }
 }
 
-updateCourse = async (id, course, username, password) => {
-  return await this.data.updateCourse(id, course, username, password);
-}
+// updateCourse = async ( course, authenticatedUser) => {
+//   const {authenticatedUser} =this.state;
+//   return await this.data.updateCourse(course,authenticatedUser);
+// }
 
   //similar to exercise - re-watch
   signIn = async (username, password) => {

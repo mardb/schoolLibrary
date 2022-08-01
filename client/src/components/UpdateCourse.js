@@ -20,8 +20,8 @@ const UpdateCourse = () => {
     const [edit, setEdit] = useState(false);
     const [errors, setErrors] = useState([])
     const { id } = useParams();
-
-
+//similar to createCourse useState
+//update formerstate naming
 //     const [title, setTitle] = useState('');
 //     const [description, setDescription] = useState('');
 //     const [time, setTime] = useState('');

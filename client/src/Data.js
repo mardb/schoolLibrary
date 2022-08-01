@@ -3,9 +3,11 @@ import {Buffer} from 'buffer'
 
 export default class Data {
   api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
+    
     const url = 'http://localhost:5000/api' + path;
+    
     // const url = config.apiBaseUrl + path;
-
+console.log(credentials);
     const options = {
       method,
       headers: {
@@ -17,16 +19,19 @@ export default class Data {
       options.body = JSON.stringify(body);
     }
 
-    // if (requiresAuth) {    
-    //   const encodedCredentials = Buffer.from(`${credentials.emailAddress}:${credentials.password}`).toString('base64');
-    //   options.headers['Authorization'] = `Basic ${encodedCredentials}`;
-    // }
+    if (requiresAuth) {    
+      const encodedCredentials = Buffer.from( `${credentials.emailAddress}:${credentials.password}`).toString('base64');
+      options.headers['Authorization'] = `Basic ${encodedCredentials}`;
+    }
     return fetch(url, options);
   }
   
 //  all properties and values for the currently authenticated User 
   async getUser(emailAddress, password) {
-    const response = await this.api(`/users`, 'GET', null, true, {emailAddress, password });
+    const response = await this.api(`/users`, 'GET', null, true, {
+      emailAddress, 
+      password, 
+    });
     if (response.status === 200) {
       return response.json().then(data => data);
     } else if(response === 401){
@@ -76,9 +81,13 @@ export default class Data {
   }
 }
   // creates a new course
-  async createCourse(course, authenticatedUser){
-    try{
-    const response = await this.api('/courses', 'POST', course, true, {username: authenticatedUser.user.emailAddress, password: authenticatedUser.password });
+  async createCourse(course, credentials){
+    const { emailAddress, password } = credentials;
+    try {
+      const response = await this.api("/courses", "POST", course, true, {
+        emailAddress,
+        password,
+      });
     if (response.status === 201) {
       console.log(response);
     } else if (response.status === 400) {
@@ -92,10 +101,13 @@ export default class Data {
 
 }
 
-  //updates the corresponding course
+  //updates the corresponding course - 
   async updateCourse(course, user, id){
     const {emailAddress, password} = user;
-const response = await this.api(`/courses/${id}`, 'PUT', course, true, {emailAddress, password });
+const response = await this.api(`/courses/${id}`, 'PUT', course, true, {
+  emailAddress, 
+  password,
+ });
 if (response.status === 204) {
   console.log(response);
 }

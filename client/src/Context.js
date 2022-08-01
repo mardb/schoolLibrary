@@ -36,7 +36,7 @@ export class Provider extends Component {
         createCourse: this.createCourse,
       },
     };
-
+    console.log('howdy', value);
     return (
       <Context.Provider value={value}>
         {this.props.children}
@@ -63,6 +63,10 @@ try{
 } catch(error){
   throw error;
 }
+}
+
+updateCourse = async (id, course, username, password) => {
+  return await this.data.updateCourse(id, course, username, password);
 }
 
   //similar to exercise - re-watch

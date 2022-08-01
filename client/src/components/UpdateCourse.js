@@ -8,13 +8,15 @@ import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
 import Data from '../Data';
 
 const UpdateCourse = (props) => {
-    let history = useHistory()
+console.log(authenticatedUser);    
+let history = useHistory()
+    console.log('hello');
     const { 
       data, 
       actions, 
       authenticatedUser, createUser
     } = useContext(Context);
-    console.log(authenticatedUser);
+    // console.log(useContext(Context));
     const [errors, setErrors] = useState([])
     const { id } = useParams();
 //similar to createCourse useState
@@ -25,11 +27,11 @@ const UpdateCourse = (props) => {
       materialsNeeded: "",
       userId: authenticatedUser.id,
     });//look up prev state
-
+//old.. will uncomment later.. trying fetch with path
 useEffect(()=>{
-    data.courseDetail(id)
+    authenticatedUser.courseDetail(id)
       .then((course) => { setCourse({
-        title: data.user,
+        title: '',
         description: "",
         estimatedTime: "",
         materialsNeeded: "",
@@ -39,6 +41,17 @@ useEffect(()=>{
         
         }).catch((err) => console.log(err))
 },[data, id]);
+//same as above but directly
+// useEffect(()=>{
+//   const url = 'http://localhost:5000/api';
+//   fetch(`${url}/courses/${id}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//   console.log(data.course);
+//        data.updateCourse(data.course);
+
+//   });
+// },[])
 
 //similar to signup
 const handleSubmit = (e) => {

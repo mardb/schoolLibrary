@@ -12,11 +12,9 @@ const UpdateCourse = () => {
     const { 
       data, 
       actions, 
-      // authenticatedUser, 
+      authenticatedUser, 
       // createUser 
     } = useContext(Context);
-   
-
    
     const [course, setCourse] = useState({
         title: '',
@@ -30,11 +28,11 @@ const UpdateCourse = () => {
     const [errors, setErrors] = useState([])
     const { id } = useParams();
 
+
 //     const [title, setTitle] = useState('');
 //     const [description, setDescription] = useState('');
 //     const [time, setTime] = useState('');
 //     const [materials, setMaterials]  = useState('');
-   
 
 useEffect(()=>{
     data.courseDetail(id)
@@ -42,7 +40,7 @@ useEffect(()=>{
         
         
         }).catch((err) => console.log(err))
-},[]);
+},[data, id]);
 
 //similar to signup
 const handleSubmit = (e) => {

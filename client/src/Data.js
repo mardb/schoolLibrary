@@ -72,7 +72,7 @@ console.log(credentials);
     const response = await this.api(`/courses`, 'GET', null);
     if (response.status === 200) {
       return response.json().then(data => {
-        console.log(data.courses[0]);
+        // console.log(data.courses[0]);
         return data.courses});
     } else if (response.status === 401) {
       return null;
@@ -102,12 +102,16 @@ console.log(credentials);
 }
 
   //updates the corresponding course - 
-  async updateCourse(course, user, id){
-    const {emailAddress, password} = user;
-const response = await this.api(`/courses/${id}`, 'PUT', course, true, {
+  // async updateCourse(course, user, id){
+    // const {emailAddress, password} = user;
+  async updateCourse(course, credentials){
+    const { emailAddress, password } = credentials;
+  
+const response = await this.api(`/courses/${course.id}`, 'PUT', course, true, {
   emailAddress, 
   password,
  });
+ console.log(course.id);
 if (response.status === 204) {
   console.log(response);
 }
@@ -120,7 +124,8 @@ else {
   }
 
   //deletes the corresponding course 
-  async deleteCourse(id, emailAddress, password){
+  async deleteCourse(id, credentials){
+    const {emailAddress, password} = credentials
 
     const response = await this.api(`/courses/${id}`, 'DELETE', true, {emailAddress, password });
 

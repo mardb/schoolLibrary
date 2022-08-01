@@ -7,29 +7,34 @@ import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
 import Data from '../Data';
 
-const UpdateCourse = () => {
+const UpdateCourse = (props) => {
     let history = useHistory()
     const { 
       data, 
       actions, 
-      authenticatedUser, 
+      authenticatedUser, createUser
     } = useContext(Context);
-   
-    const [course, setCourse] = useState({
-    });//look up prev state
-    const [edit, setEdit] = useState(false);
+    console.log(authenticatedUser);
     const [errors, setErrors] = useState([])
     const { id } = useParams();
 //similar to createCourse useState
-//update formerstate naming
-//     const [title, setTitle] = useState('');
-//     const [description, setDescription] = useState('');
-//     const [time, setTime] = useState('');
-//     const [materials, setMaterials]  = useState('');
+    const [course, setCourse] = useState({
+      title: "",
+      description: "",
+      estimatedTime: "",
+      materialsNeeded: "",
+      userId: authenticatedUser.id,
+    });//look up prev state
 
 useEffect(()=>{
     data.courseDetail(id)
-      .then((course) => { setCourse(prevState)
+      .then((course) => { setCourse({
+        title: data.user,
+        description: "",
+        estimatedTime: "",
+        materialsNeeded: "",
+   
+      })
         
         
         }).catch((err) => console.log(err))
@@ -38,11 +43,10 @@ useEffect(()=>{
 //similar to signup
 const handleSubmit = (e) => {
     e.preventDefault();
-
-    actions.UpdateCourse(course, authenticatedUser)
+    data.UpdateCourse(course, authenticatedUser)
     .then((errors) => {
       if (errors.length) {
-        setErrors(errors);
+        setErrors(errors, id);
       } else {
         history.push('/courses/${id}')
       }
@@ -53,19 +57,35 @@ const handleSubmit = (e) => {
     })
   };
 
-  const cancel = () => {
-    history.push('/');
-  };
+
+  // const cancel = () => {
+  //   history.push('/');
+  // };
 
 
 const handleChange= (e)=>{
     e.preventDefault()
     const {name, value} = e.target;
-    setCourse((course) => ({
+    data.setCourse((prevState) => ({
         ...course,
         [name]: value
     }))
 }
+
+
+
+
+
+const handleDelete = (id) => {
+  data.setCourse( prevState => {
+    return {
+      courses: prevState.courses.filter(course => course.id !== id)
+    }
+  })
+}
+
+
+
 
 
   return(
@@ -91,7 +111,7 @@ const handleChange= (e)=>{
                 </div>
             </div>
             <button className="button" type="submit">Update Course</button>
-            <Link className="button button-secondary" onClick={cancel} to={'/'}>Cancel</Link>
+            <Link className="button button-secondary"  to={'/courses/${id}'}>Cancel</Link>
         </form>
     </div>
   )

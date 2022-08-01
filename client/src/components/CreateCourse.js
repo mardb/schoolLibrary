@@ -10,7 +10,7 @@ const CreateCourse = (props) => {
     console.log(authenticatedUser);
     // const [isLoading, setIsLoading] = useState(true);
     const [errors, setErrors] = useState([]);
-    const [formerState, setFormerState] = useState({
+    const [course, setCourse] = useState({
         title: '',
         description: '',
         estimatedTime: '',
@@ -20,7 +20,7 @@ const CreateCourse = (props) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target
-        setFormerState((prevState) => ({
+        setCourse((prevState) => ({
             ...prevState,
             [name]: value,
         }));
@@ -30,7 +30,7 @@ const CreateCourse = (props) => {
         console.log(authenticatedUser);
         e.preventDefault();
         try {
-            await actions.createCourse(formerState, authenticatedUser);
+            await actions.createCourse(course, authenticatedUser);
             history.push('/');
           } catch (error) {
             console.log(error);
@@ -92,7 +92,7 @@ const CreateCourse = (props) => {
                     id="title"
                     name="title"
                     type="text"
-                    value={formerState.title}
+                    value={course.title}
                     onChange={handleChange}
                     />
                         {/* <input id="courseTitle" name="courseTitle" type="text" value={course.title} onChange={handleOnChange}/> */}
@@ -103,7 +103,7 @@ const CreateCourse = (props) => {
                         <textarea
                         id="description"
                         name="description"
-                        value={formerState.description}
+                        value={course.description}
                         onChange={handleChange}
                         ></textarea>
                     </div>
@@ -113,14 +113,14 @@ const CreateCourse = (props) => {
                             id="estimatedTime"
                             name="estimatedTime"
                             type="text"
-                            value={formerState.time}
+                            value={course.time}
                             onChange={handleChange}
                         />
                         <label htmlFor="materialsNeeded">Materials Needed</label>
                         <textarea
                         id="materialsNeeded"
                         name="materialsNeeded"
-                        value={formerState.materials}
+                        value={course.materials}
                         onChange={handleChange}
                         ></textarea>
                     </div>

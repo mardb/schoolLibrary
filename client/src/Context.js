@@ -64,6 +64,7 @@ try{
   throw error;
 }
 }
+
   //similar to exercise - re-watch
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password)

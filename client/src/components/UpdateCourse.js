@@ -80,7 +80,7 @@ useEffect((data) => {
 //similar to signup
 const handleSubmit = (e) => {
     e.preventDefault();
-    data.UpdateCourse(course, authenticatedUser)
+    data.UpdateCourse(course, authenticatedUser, id)
     .then((errors) => {
       if (errors.length) {
         setErrors(errors, id);

@@ -34,10 +34,22 @@ const CourseDetail = (props) => {
     // })
   }, []);
 
+  //
+  // const handleDelete = (id) => {
+//   data.setCourse( prevState => {
+//     return {
+//       courses: prevState.courses.filter(course => course.id !== id)
+//     }
+//   })
+// }
 
-  if (!isLoading) {
-    return (
-      <>
+// console.log(course.title);
+
+
+
+  
+    return  !isLoading ? (
+      <React.Fragment>
         <div className="actions--bar">
           <div className="wrap">
             <Link
@@ -88,10 +100,9 @@ const CourseDetail = (props) => {
             </div>
           </form>
         </div>
-      </>
-    );
-  } else {
-    return <h1> Loading...</h1>;
-  }
+      </React.Fragment>
+    ): (
+     <h1> Loading...</h1>
+    )
 };
 export default CourseDetail;

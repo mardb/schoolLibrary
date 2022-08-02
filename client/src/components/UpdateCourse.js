@@ -161,7 +161,7 @@ console.log(course.title);
                 </div>
             </div>
             <button className="button" type="submit">Update Course</button>
-            <Link className="button button-secondary"  to={'/courses/${id}'}>Cancel</Link>
+            <Link className="button button-secondary"  to={`/courses/${id}`}>Cancel</Link>
         </form>
     </div>
   )

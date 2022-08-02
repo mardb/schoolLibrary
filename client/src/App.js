@@ -22,9 +22,11 @@ import PrivateRoute from './PrivateRoute';
 
   const HeaderWithContext = withContext(Header);
   const CoursesWithContext = withContext(Courses);
+  const CourseDetailWithContext = withContext(CourseDetail)
   const UserSignUpWithContext = withContext(UserSignUp)
   const UserSignInWithContext = withContext(UserSignIn)
   const UserSignOutWithContext = withContext(UserSignOut)
+  const UpdateCourseWithContext = withContext(UpdateCourse)
   
   function App() {
     //   const url = config.apiBaseUrl
@@ -44,15 +46,16 @@ import PrivateRoute from './PrivateRoute';
           <Route exact  path="/" component={ Courses } />
           {/* <Route exact path="/courses" component={ Courses } /> */}
           <Route path="/courses/create" component={CreateCourse}/>
+  
+          <Route path='/courses/:id/update' component={ UpdateCourseWithContext } />
           <Route path="/courses/:id" component={ CourseDetail } />
-          <Route path='/courses/:id/update' component={ UpdateCourse } />
-          
-          <Route exact path="/error" component={ Error } />
-          <Route path="/forbidden" component={ Forbidden } />
-
+       
           <Route path="/signin" component={ UserSignInWithContext } />
           <Route path="/signup" component={ UserSignUpWithContext } />
           <Route path="/signout" component={ UserSignOutWithContext} />
+
+          <Route exact path="/error" component={ Error } />
+          <Route path="/forbidden" component={ Forbidden } />
           <Route component={ NotFound } />
           <Route path="*" component={ NotFound } />
         </Switch>

@@ -2,7 +2,7 @@ import React, {
     // useContext, 
     useEffect, useState } from 'react';
 // import Context from '../Context';
-import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
 // import Data from '../Data';
@@ -13,7 +13,7 @@ const CourseDetail = (props) => {
   const history = useHistory();
   const [course, setCourse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [edit, setEdit] = useState(false);
+  // const [edit, setEdit] = useState(false);
   // const {data, authenticatedUser} = useContext(Context)
   const { id } = useParams();
 
@@ -33,6 +33,7 @@ const CourseDetail = (props) => {
     //     history.push('/notfound');
     // })
   }, []);
+
 
   if (!isLoading) {
     return (

@@ -1,6 +1,9 @@
-import React, { Component, useContext, useState } from 'react';
+import React, { 
+  useContext, useState,
+  // Component, 
+ } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import Data from '../Data';
+// import Data from '../Data';
 import { Context } from '../Context';
 
 const UserSignIn = () => {

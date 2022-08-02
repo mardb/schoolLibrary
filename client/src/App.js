@@ -44,8 +44,8 @@ import PrivateRoute from './PrivateRoute';
           <Route exact  path="/" component={ Courses } />
           {/* <Route exact path="/courses" component={ Courses } /> */}
           <Route path="/courses/create" component={CreateCourse}/>
-          <Route path='/courses/:id/update' component={ UpdateCourse } />
           <Route path="/courses/:id" component={ CourseDetail } />
+          <Route path='/courses/:id/update' component={ UpdateCourse } />
           
           <Route exact path="/error" component={ Error } />
           <Route path="/forbidden" component={ Forbidden } />

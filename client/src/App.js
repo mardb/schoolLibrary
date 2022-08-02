@@ -16,6 +16,7 @@ import CourseDetail from './components/CourseDetail'; //
 import NotFound from './components/NotFound'; //
 import Forbidden from './components/Forbidden'; //
 import Error from './components/Error'; //
+import Authenticated from './components/Authenticated';
 
 import withContext from './Context';
 import PrivateRoute from './PrivateRoute';
@@ -27,6 +28,7 @@ import PrivateRoute from './PrivateRoute';
   const UserSignInWithContext = withContext(UserSignIn)
   const UserSignOutWithContext = withContext(UserSignOut)
   const UpdateCourseWithContext = withContext(UpdateCourse)
+  const AuthWithContext = withContext(Authenticated);
   
   function App() {
     //   const url = config.apiBaseUrl
@@ -44,6 +46,7 @@ import PrivateRoute from './PrivateRoute';
         <HeaderWithContext />
         <Switch>
           <Route exact  path="/" component={ Courses } />
+          <PrivateRoute path="/authenticated" component={AuthWithContext} />
           <Route exact path="/courses" component={ Courses } />
           <Route path="/courses/create" component={CreateCourse}/>
   

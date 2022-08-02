@@ -1,7 +1,8 @@
 import React 
 , { useEffect, useContext,  useState, prevState}  
 from 'react';
-import Context from '../Context';
+import {Context} from '../Context';
+
 import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
 // import ReactMarkdown from 'react-markdown';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
@@ -16,6 +17,7 @@ let history = useHistory()
       actions, 
       authenticatedUser, createUser
     } = useContext(Context);
+    console.log(useContext(Context));   
     // console.log(useContext(Context));
     const [errors, setErrors] = useState([])
     const { id } = useParams();
@@ -25,24 +27,27 @@ let history = useHistory()
       description: "",
       estimatedTime: "",
       materialsNeeded: "",
-      userId: authenticatedUser.id,
+      // userId: authenticatedUser.id,
     });//look up prev state
 //old.. will uncomment later.. trying fetch with path
-useEffect(()=>{
-    data.courseDetail(id)
-      .then((course) => { setCourse({
-        id: data.user.id,
-        title: data.user,
-        description: "",
-        estimatedTime: "",
-        materialsNeeded: "",
+// useEffect((data)=>{
+//   // console.log(data.user.id,);
+//     data.courseDetail(data.id)
+//       .then((course) => { setCourse({
+//         id: id,
+//         title: course,
+//         description: "",
+//         estimatedTime: "",
+//         materialsNeeded: "",
    
-      })
+//       })
         
         
-        }).catch((err) => console.log(err))
-},[data, id]);
-console.log(data.user.id);
+//         }).catch((err) => console.log(err))
+// },[]);
+//put back after
+// },[data, id]);
+// console.log(data.user.id);
 //same as above but directly
 // useEffect(()=>{
 //   const url = 'http://localhost:5000/api';
@@ -53,7 +58,24 @@ console.log(data.user.id);
 //        data.updateCourse(data.course);
 
 //   });
-// },[])
+
+useEffect((data) => {
+  const url = 'http://localhost:5000/api';
+  fetch(`${url}/courses/${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      // console.log(data.course);
+      setCourse(data.course);
+   
+    });
+  //     data.courseDetail(id)
+  // .then(response => setCourse(response))
+  // .catch(error => {
+  //     console.log(error);
+  //     history.push('/notfound');
+  // })
+}, []);
+
 
 //similar to signup
 const handleSubmit = (e) => {
@@ -113,18 +135,22 @@ console.log(course.title);
                     <input id="courseTitle" name='courseTitle' type="text" value={course.title} onChange={handleChange}/>
 
                     <p>
-                      By {course.user.firstName} {course.user.lastName}{' '}
+                      {/* By {course.user.firstName} {course.user.lastName}{' '} */}
                     </p>
 
                     <label htmlFor="courseDescription">Course Description</label>
-                    <textarea id="courseDescription" name="courseDescription" value={course.description} onChange={handleChange}></textarea>
+                    {/* <textarea id="courseDescription" name="courseDescription" 
+                    // defaultValue={course.description} 
+                    onChange={handleChange}></textarea> */}
                 </div>
                 <div>
                     <label htmlFor="estimatedTime">Estimated Time</label>
-                    <input id="estimatedTime" name="estimatedTime" type="text" value={course.estimatedTime} onChange={handleChange} />
+                    <input id="estimatedTime" name="estimatedTime" type="text" 
+                    // value={course.estimatedTime}
+                     onChange={handleChange} />
 
                     <label htmlFor="materialsNeeded">Materials Needed</label>
-                    <textarea id="materialsNeeded" name="materialsNeeded" onChange={handleChange}>{course.materialsNeeded} </textarea>
+                    {/* <textarea id="materialsNeeded" name="materialsNeeded" onChange={handleChange}>{course.materialsNeeded} </textarea> */}
                 </div>
             </div>
             <button className="button" type="submit">Update Course</button>

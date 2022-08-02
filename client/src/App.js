@@ -44,7 +44,7 @@ import PrivateRoute from './PrivateRoute';
         <HeaderWithContext />
         <Switch>
           <Route exact  path="/" component={ Courses } />
-          {/* <Route exact path="/courses" component={ Courses } /> */}
+          <Route exact path="/courses" component={ Courses } />
           <Route path="/courses/create" component={CreateCourse}/>
   
           <Route path='/courses/:id/update' component={ UpdateCourseWithContext } />
@@ -53,10 +53,10 @@ import PrivateRoute from './PrivateRoute';
           <Route path="/signin" component={ UserSignInWithContext } />
           <Route path="/signup" component={ UserSignUpWithContext } />
           <Route path="/signout" component={ UserSignOutWithContext} />
-
+          <Route component={ NotFound } />
           <Route exact path="/error" component={ Error } />
           <Route path="/forbidden" component={ Forbidden } />
-          <Route component={ NotFound } />
+      
           <Route path="*" component={ NotFound } />
         </Switch>
 

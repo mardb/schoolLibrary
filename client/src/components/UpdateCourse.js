@@ -142,15 +142,22 @@ console.log(course.title);
                     {/* <textarea id="courseDescription" name="courseDescription" 
                     // defaultValue={course.description} 
                     onChange={handleChange}></textarea> */}
+                    <textarea 
+                    id="courseDescription" 
+                    name="courseDescription" 
+                    value={course.description} 
+                    onChange={(e) => 
+                    setCourse(e.target.value)}></textarea>
                 </div>
                 <div>
                     <label htmlFor="estimatedTime">Estimated Time</label>
                     <input id="estimatedTime" name="estimatedTime" type="text" 
-                    // value={course.estimatedTime}
+                    defaultValue={course.estimatedTime}
                      onChange={handleChange} />
 
                     <label htmlFor="materialsNeeded">Materials Needed</label>
-                    {/* <textarea id="materialsNeeded" name="materialsNeeded" onChange={handleChange}>{course.materialsNeeded} </textarea> */}
+                    {/* <textarea id="materialsNeeded" name="materialsNeeded" onChange={handleChange} defaultValue="hi"> lalala </textarea> */}
+                    <textarea id="materialsNeeded" name="materialsNeeded" defaultValue={course.materialsNeeded} onChange={(e) => setCourse(e.target.value)}></textarea>
                 </div>
             </div>
             <button className="button" type="submit">Update Course</button>

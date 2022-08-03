@@ -27,7 +27,6 @@ let history = useHistory()
       description: "",
       estimatedTime: "",
       materialsNeeded: "",
-      userId: authenticatedUser.id,
     });//look up prev state
 //old.. will uncomment later.. trying fetch with path
 // useEffect((data)=>{
@@ -77,36 +76,11 @@ useEffect((data) => {
 }, []);
 
 
-//similar to signup
-// const handleSubmit = (e) => {
-//     e.preventDefault();
-//     data.UpdateCourse(course, authenticatedUser, id)
-//     .then((errors) => {
-//       if (errors.length) {
-//         setErrors(errors, id);
-//       } else {
-//         history.push('/courses/${id}')
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       history.push('/error');
-//     })
-//   };
 
+const handleSubmit = (e) => {
+       e.preventDefault()
 
-//-----------
-const handleSubmit = () => {
-       
-  // const updatedCourse = {
-  //   title,
-  //   description,
-  //   estimatedTime,
-  //   materialsNeeded,
-  //   userId: authenticatedUser.id,
-  // };
-
-  const body = JSON.stringify(course);
+  const body = JSON.stringify({...course, userId: authenticatedUser.id,});
 
   fetch(`http://localhost:5000/api/courses/${id}`, {
       method: "PUT",

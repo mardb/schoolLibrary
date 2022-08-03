@@ -10,13 +10,12 @@ import ReactMarkdown from 'react-markdown';
 
 const CourseDetail = (props) => {
   const history = useHistory();
-  const { data, context, authenticatedUser, courses, actions} = useContext(Context);
-console.log(authenticatedUser);
-  // console.log(useContext(Context));
-  // const { data.emailAddress, password } = credentials;
+  const { data, context, authenticatedUser, courses, actions } = useContext(
+    Context
+  );
+  console.log(authenticatedUser);
   const [course, setCourse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  // const [edit, setEdit] = useState(false);
   const { id } = useParams();
 
   useEffect((data) => {
@@ -28,12 +27,6 @@ console.log(authenticatedUser);
         setCourse(data.course);
         setIsLoading(false);
       });
-    //     data.courseDetail(id)
-    // .then(response => setCourse(response))
-    // .catch(error => {
-    //     console.log(error);
-    //     history.push('/notfound');
-    // })
   }, []);
 
   //
@@ -42,12 +35,11 @@ console.log(authenticatedUser);
     fetch(`${url}/courses/${id}`, {
       method: 'DELETE',
       headers: {
-        "Content-Type": 'application/json',
-        "Authorization":
-          "Basic " +
+        'Content-Type': 'application/json',
+        Authorization:
+          'Basic ' +
           Buffer.from(
             `${authenticatedUser.emailAddress}:${authenticatedUser.password}`
-          
           ).toString('base64'),
       },
       body: null,
@@ -70,19 +62,32 @@ console.log(authenticatedUser);
     <React.Fragment>
       <div className="actions--bar">
         <div className="wrap">
-          <Link
-            to={`/courses/${id}/update`}
-            className="button"
-            href="update-course.html"
-          >
-            Update Course
-          </Link>
-          <Link className="button" to="/courses" onClick={handleDelete}>
-            Delete Course
-          </Link>
+        {(authenticatedUser && course.user) ?
+                        (authenticatedUser.id === course.user.id) ?
+          <React.Fragment>
+            <Link
+              to={`/courses/${id}/update`}
+              className="button"
+              href="update-course.html"
+            >
+              Update Course
+            </Link>
+            <Link className="button" to="/courses" onClick={handleDelete}>
+              Delete Course
+            </Link>
+            <Link to={'/'} className="button button-secondary">
+              Return to List
+            </Link>
+          </React.Fragment>
+          :
           <Link to={'/'} className="button button-secondary">
+              Return to List
+            </Link>
+            :
+            <Link to={'/'} className="button button-secondary">
             Return to List
           </Link>
+          }
         </div>
       </div>
 

@@ -34,7 +34,6 @@ const sequelize = new Sequelize({
     await sequelize.authenticate();
     console.log('Connection to database was successful!');
   } catch (error) {
-    // console.log('Error connecting to the database.', error);
     if (error.name === 'SequelizeValidationError') {
       const errors = error.errors.map((err) => err.message);
       console.error('Validation errors: ', errors);

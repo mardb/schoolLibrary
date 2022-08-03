@@ -1,9 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Context } from '../Context';
-// import UserSignIn from './UserSignIn';
-// import Form from './Form';
-// import Data from '../Data';
 
 const UserSignUp = (props) => {
   const history = useHistory();
@@ -14,7 +11,7 @@ const UserSignUp = (props) => {
     emailAddress: '',
     password: '',
   });
-  // const [isLoading, setIsLoading] = useState(true);
+
   const [errors, setErrors] = useState([]);
 
   const handleChange = (e) => {

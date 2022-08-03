@@ -1,57 +1,26 @@
 import React, { useContext, useEffect } from 'react';
-import { Link, 
-    // Router, useNavigate 
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Context } from '../Context'
-// import Data from '../Data';
+
 // allow Courses component to retrieve it's data from the REST API when those components are mounted.
 const Courses = () => {
-  const { actions, authenticatedUser, courses } = useContext(Context);
-  // const [courses, setCourses] = useState([]);
-  // const {data} = useContext(Context)
-// console.log(data);
+  const { actions, courses } = useContext(Context);
+
 
   useEffect(() => {
    actions.getCourses()
-      // .then((response) => setCourses(response)).then(response =>console.log(data.getCourses()))
-
-      // .catch((error) => {
-      //   console.log(error.message);
-      //   // useNavigate('/error');
-      //   // history.pushState('/')
-      // });
   },[]);
 
-//   const url = 'http://localhost:5000/api'
-//   fetch(`${url}/courses`)
-//   .then(res => res.json()).then(data => {
-//     console.log(data.courses)
-//   }
-// );
-
-// if (!authenticatedUser) {
-//   return (
-//     <div className="form--centered">
-//       <h2>You must be signed in to view this page.</h2>
-//       <Link to="/signin">Sign in</Link>
-//     </div>
-//   );
-// }
-
-// if (!courses && authenticatedUser) {
-//   return <div>Loading...</div>;
-// }
 if (!courses ) {
   return <div>Loading...</div>;
 }
-
 
   return (
     <React.Fragment>
       <div className="wrap main--grid">
         {courses.map((course, index) => 
             <Link to={`/courses/${course.id}`} 
-            key={index} //for map
+            key={index} 
              className="course--module course--link" 
             >
             <h2 className="course--label">Course</h2>
@@ -67,7 +36,7 @@ if (!courses ) {
                 <h3 className="course--title">Course Title</h3>
                  </Link> */}
                     
-             {authenticatedUser ? (
+             {/* {authenticatedUser ? ( */}
       <Link to={`/courses/create`} className="course--module course--add--module">
         <span className="course--add--title">
           <svg
@@ -83,9 +52,9 @@ if (!courses ) {
           New Course
         </span>
       </Link> 
-             ) : (
-               <></>
-             )}
+             {/* ) : ( */}
+               {/* <></> */}
+             {/* )} */}
     </div>
     </React.Fragment>
   );

@@ -25,39 +25,15 @@ let history = useHistory()
       materialsNeeded: "",
     });
     const [errors, setErrors] = useState([]);
-        
-        
-//         }).catch((err) => console.log(err))
-// },[]);
-//put back after
-// },[data, id]);
-// console.log(data.user.id);
-//same as above but directly
-// useEffect(()=>{
-//   const url = 'http://localhost:5000/api';
-//   fetch(`${url}/courses/${id}`)
-//     .then((res) => res.json())
-//     .then((data) => {
-//   console.log(data.course);
-//        data.updateCourse(data.course);
-
-//   });
 
 useEffect((data) => {
   const url = 'http://localhost:5000/api';
   fetch(`${url}/courses/${id}`)
     .then((res) => res.json())
     .then((data) => {
-      // console.log(data.course);
       setCourse(data.course);
    
     });
-  //     data.courseDetail(id)
-  // .then(response => setCourse(response))
-  // .catch(error => {
-  //     console.log(error);
-  //     history.push('/notfound');
-  // })
 }, []);
 
 
@@ -88,13 +64,6 @@ const handleSubmit = (e) => {
       })
      
 }
-
-//------------
-
-  // const cancel = () => {
-  //   history.push('/');
-  // };
-
 
 const handleChange= (e)=>{
     e.preventDefault()

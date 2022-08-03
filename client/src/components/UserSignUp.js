@@ -92,7 +92,7 @@ const UserSignUp = (props) => {
         >
           Sign Up
         </button>
-        <button className="button button-secondary" onChange={cancel} to={'/'}>
+        <button className="button button-secondary" onClick={cancel} to={'/'}>
           Cancel
         </button>
       </form>

@@ -140,7 +140,7 @@ const handleSubmit = () => {
 const handleChange= (e)=>{
     e.preventDefault()
     const {name, value} = e.target;
-    data.setCourse((prevState) => ({
+    setCourse((prevState) => ({
         ...course,
         [name]: value
     }))
@@ -177,7 +177,7 @@ console.log(course.title);
 
                     <label htmlFor="courseDescription">Course Description</label>
                     {/* <textarea id="courseDescription" name="courseDescription" 
-                    // defaultValue={course.description} 
+                    // value={course.description} 
                     onChange={handleChange}></textarea> */}
                     <textarea 
                     id="courseDescription" 
@@ -189,12 +189,12 @@ console.log(course.title);
                 <div>
                     <label htmlFor="estimatedTime">Estimated Time</label>
                     <input id="estimatedTime" name="estimatedTime" type="text" 
-                    defaultValue={course.estimatedTime}
+                    value={course.estimatedTime}
                      onChange={handleChange} />
 
                     <label htmlFor="materialsNeeded">Materials Needed</label>
-                    {/* <textarea id="materialsNeeded" name="materialsNeeded" onChange={handleChange} defaultValue="hi"> lalala </textarea> */}
-                    <textarea id="materialsNeeded" name="materialsNeeded" defaultValue={course.materialsNeeded} onChange={(e) => setCourse(e.target.value)}></textarea>
+                    {/* <textarea id="materialsNeeded" name="materialsNeeded" onChange={handleChange} value="hi"> lalala </textarea> */}
+                    <textarea id="materialsNeeded" name="materialsNeeded" value={course.materialsNeeded} onChange={(e) => setCourse(e.target.value)}></textarea>
                 </div>
             </div>
             <button className="button" type="submit" onClick={handleSubmit}>Update Course</button>

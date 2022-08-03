@@ -43,6 +43,8 @@ const UserSignUp = (props) => {
     })
   };
 
+  
+
   const cancel = () => {
     history.push('/');
   };
@@ -50,7 +52,9 @@ const UserSignUp = (props) => {
   return (
     <div className="form--centered">
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form 
+      submit={handleSubmit}
+      >
         <label htmlFor="firstName">First Name</label>
         <input
           id="firstName"
@@ -83,7 +87,9 @@ const UserSignUp = (props) => {
           value={user.password}
           onChange={handleChange}
         />
-        <button className="button" onSubmit={handleSubmit}>
+        <button className="button" 
+        onSubmit={handleSubmit}
+        >
           Sign Up
         </button>
         <button className="button button-secondary" onChange={cancel} to={'/'}>

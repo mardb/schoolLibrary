@@ -27,7 +27,7 @@ let history = useHistory()
       description: "",
       estimatedTime: "",
       materialsNeeded: "",
-      // userId: authenticatedUser.id,
+      userId: authenticatedUser.id,
     });//look up prev state
 //old.. will uncomment later.. trying fetch with path
 // useEffect((data)=>{
@@ -78,22 +78,59 @@ useEffect((data) => {
 
 
 //similar to signup
-const handleSubmit = (e) => {
-    e.preventDefault();
-    data.UpdateCourse(course, authenticatedUser, id)
-    .then((errors) => {
-      if (errors.length) {
-        setErrors(errors, id);
-      } else {
-        history.push('/courses/${id}')
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      history.push('/error');
-    })
-  };
+// const handleSubmit = (e) => {
+//     e.preventDefault();
+//     data.UpdateCourse(course, authenticatedUser, id)
+//     .then((errors) => {
+//       if (errors.length) {
+//         setErrors(errors, id);
+//       } else {
+//         history.push('/courses/${id}')
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       history.push('/error');
+//     })
+//   };
 
+
+//-----------
+const handleSubmit = () => {
+       
+  // const updatedCourse = {
+  //   title,
+  //   description,
+  //   estimatedTime,
+  //   materialsNeeded,
+  //   userId: authenticatedUser.id,
+  // };
+
+  const body = JSON.stringify(course);
+
+  fetch(`http://localhost:5000/api/courses/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" ,
+              'Authorization': 'Basic ' + Buffer.from(`${authenticatedUser.emailAddress}:${authenticatedUser.password}`).toString("base64") 
+      },
+      body: body,
+  })
+      .then( response => {
+          if (response.status === 204) {
+              console.log("Course was updated!");
+              history.push(`/courses/${id}`);
+          } else if (response.status === 400){
+              return response.json().then(data => {
+                  return data.errors;
+              });
+          } else {
+              throw new Error();
+          }
+      })
+  
+}
+
+//------------
 
   // const cancel = () => {
   //   history.push('/');
@@ -160,7 +197,7 @@ console.log(course.title);
                     <textarea id="materialsNeeded" name="materialsNeeded" defaultValue={course.materialsNeeded} onChange={(e) => setCourse(e.target.value)}></textarea>
                 </div>
             </div>
-            <button className="button" type="submit">Update Course</button>
+            <button className="button" type="submit" onClick={handleSubmit}>Update Course</button>
             <Link className="button button-secondary"  to={`/courses/${id}`}>Cancel</Link>
         </form>
     </div>

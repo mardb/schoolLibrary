@@ -31,17 +31,22 @@ const CreateCourse = (props) => {
         e.preventDefault();
         try {
            const res = await data.createCourse(course, authenticatedUser);
-           if (res.errors) {
-            setErrors(res.errors);
-          } else {
-            history.push("/");
-          }
-        //     history.push('/');
+            history.push('/');
           } catch (error) {
             console.log(error);
             setErrors([error]);
           }
         };
+
+
+        //why is this breking my code when i put it above???
+        // const res = await data.createCourse(course, authenticatedUser);
+        // if (res.errors) {
+        //   setErrors(res.errors);
+        // } else {
+        //   history.push("/");
+        // }
+  
 
     // .then(errors => {
     //         if(errors.length){

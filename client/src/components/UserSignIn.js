@@ -16,8 +16,8 @@ const UserSignIn = () => {
   const [user, setUser] = useState({
     emailAddress: '',
     password: '',
-    errors:[]
   });
+  const [errors, setErrors] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
 
   const submit = (e) => {
@@ -28,9 +28,7 @@ const UserSignIn = () => {
       .then((user) => {
         if (user === null) {
           
-          this.setState(() => {
-            return { errors: ['Sign-in was unsuccessful'] };
-          });
+          setErrors('Sign-in was unsuccessful');
         } else {
           history.push('/');
           console.log(`SUCCESS! ${emailAddress} is now signed in!`);
@@ -41,6 +39,22 @@ const UserSignIn = () => {
         history.push('/error');
       });
   };
+
+  //
+  // data.createUser(user).then((errors) => {
+  //   if (errors.length) {
+  //     setErrors(errors);
+  //   } else {
+      
+  //       actions.signIn(user.emailAddress, user.password)
+  //       .then(() => history.push('/'));
+  //   }
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  //   history.push('/error');
+  // })
+  //
 
   const handleChange = (e) => {
 
@@ -59,8 +73,20 @@ const UserSignIn = () => {
   return (
     <div className="form--centered">
       <h2>Sign In</h2>
-
-      <form cancel="">
+      {errors.length !== 0 && (
+        <div className="validation--errors">
+          <h3>Validation Errors</h3>
+          <ul>
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <form 
+      cancel=""
+      errors={errors}
+      >
         <label htmlFor="emailAddress">Email Address</label>
         <input
           id="emailAddress"

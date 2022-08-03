@@ -1,20 +1,20 @@
 import React, { useContext, useState } from 'react';
-import { Link, useHistory, useNavigate } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Context } from '../Context';
-import UserSignIn from './UserSignIn';
-import Form from './Form';
-import Data from '../Data';
+// import UserSignIn from './UserSignIn';
+// import Form from './Form';
+// import Data from '../Data';
 
 const UserSignUp = (props) => {
   const history = useHistory();
-  const { data, actions, authenticatedUser, createUser } = useContext(Context);
+  const { data, actions } = useContext(Context);
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
     emailAddress: '',
     password: '',
   });
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState([]);
 
   const handleChange = (e) => {

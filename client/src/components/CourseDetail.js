@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../Context';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Buffer } from 'buffer';
 import ReactMarkdown from 'react-markdown';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
@@ -9,8 +9,8 @@ import ReactMarkdown from 'react-markdown';
 //change to stateful component
 
 const CourseDetail = (props) => {
-  const history = useHistory();
-  const { data, context, authenticatedUser, courses, actions } = useContext(
+  // const history = useHistory();
+  const { authenticatedUser } = useContext(
     Context
   );
   console.log(authenticatedUser);

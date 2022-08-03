@@ -60,7 +60,7 @@ import PrivateRoute from './PrivateRoute';
           <Route exact path="/error" component={ Error } />
           <Route path="/forbidden" component={ Forbidden } />
       
-          <Route path="*" component={ NotFound } />
+          {/* <Route path="*" component={ NotFound } /> */}
         </Switch>
 
 

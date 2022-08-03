@@ -1,25 +1,21 @@
 import React 
-, { useEffect, useContext,  useState, prevState}  
+, { useEffect, useContext,  useState }  
 from 'react';
 import {Context} from '../Context';
 
-import { Link, useParams, useNavigate, useHistory } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 // import ReactMarkdown from 'react-markdown';
 //allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
-import Data from '../Data';
+// import Data from '../Data';
 
 const UpdateCourse = (props) => {
 console.log(props);    
 let history = useHistory()
     console.log('hello');
-    const { 
-      data, 
-      actions, 
-      authenticatedUser, createUser
-    } = useContext(Context);
+    const { authenticatedUser} = useContext(Context);
     console.log(useContext(Context));   
     // console.log(useContext(Context));
-    const [errors, setErrors] = useState([])
+    // const [errors, setErrors] = useState([])
     const { id } = useParams();
 //similar to createCourse useState
     const [course, setCourse] = useState({
@@ -124,13 +120,13 @@ const handleChange= (e)=>{
 
 
 
-const handleDelete = (id) => {
-  data.setCourse( prevState => {
-    return {
-      courses: prevState.courses.filter(course => course.id !== id)
-    }
-  })
-}
+// const handleDelete = (id) => {
+//   data.setCourse( prevState => {
+//     return {
+//       courses: prevState.courses.filter(course => course.id !== id)
+//     }
+//   })
+// }
 
 console.log(course.title);
 

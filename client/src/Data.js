@@ -97,7 +97,7 @@ export default class Data {
         password,
       });
       if (response.status === 201) {
-        console.log(response);
+        return [];
       } else if (response.status === 400) {
         return response.json().then((data) => data);
       } else {

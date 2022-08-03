@@ -52,8 +52,19 @@ const UserSignUp = (props) => {
   return (
     <div className="form--centered">
       <h2>Sign Up</h2>
+      {errors.length !== 0 && (
+        <div className="validation--errors">
+          <h3>Validation Errors</h3>
+          <ul>
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <form 
-      submit={handleSubmit}
+      onSubmit={handleSubmit}
       >
         <label htmlFor="firstName">First Name</label>
         <input

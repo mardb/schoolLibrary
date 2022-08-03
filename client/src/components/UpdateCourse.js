@@ -14,10 +14,8 @@ let history = useHistory()
     console.log('hello');
     const { authenticatedUser} = useContext(Context);
     console.log(useContext(Context));   
-    // console.log(useContext(Context));
-    // const [errors, setErrors] = useState([])
     const { id } = useParams();
-//similar to createCourse useState
+
     const [course, setCourse] = useState({
       title: "",
       description: "",
@@ -56,7 +54,7 @@ const handleSubmit = (e) => {
               history.push(`/courses/${id}`);
           } else if (response.status === 400){
               return response.json().then(data => {
-                  return data.errors;
+                 setErrors( data.errors)
               });
           } else {
               throw new Error();
@@ -64,6 +62,8 @@ const handleSubmit = (e) => {
       })
      
 }
+
+
 
 const handleChange= (e)=>{
     e.preventDefault()

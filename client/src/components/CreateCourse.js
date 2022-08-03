@@ -1,14 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Context } from '../Context';
-import UserSignIn from './UserSignIn';
 
 //make stateful component
 const CreateCourse = (props) => {
   const history = useHistory();
-  const { data, actions, authenticatedUser, createUser } = useContext(Context);
+  const { data, authenticatedUser } = useContext(Context);
   console.log(authenticatedUser);
-  // const [isLoading, setIsLoading] = useState(true);
+
   const [errors, setErrors] = useState([]);
   const [course, setCourse] = useState({
     title: '',

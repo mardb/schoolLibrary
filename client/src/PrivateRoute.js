@@ -1,6 +1,6 @@
-import React, { useContext, Component } from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect} from 'react-router-dom';
-import { Consumer, Context } from './Context';
+import { Consumer } from './Context';
 
 export default ({ component: Component, ...rest }) => {
   const context = useContext(Consumer)

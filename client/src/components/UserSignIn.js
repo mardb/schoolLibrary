@@ -8,21 +8,16 @@ import { Context } from '../Context';
 
 const UserSignIn = () => {
   const history = useHistory();
-  const { 
- actions, 
-    // data, authenticatedUser, createUser, context 
-  } = useContext(Context);
+  const { actions } = useContext(Context);
 
   const [user, setUser] = useState({
     emailAddress: '',
     password: '',
   });
   const [errors, setErrors] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
 
   const submit = (e) => {
     e.preventDefault()
-    // const { context } = this.props;
     const { emailAddress, password } = user;
     actions.signIn(emailAddress, password)
       .then((user) => {
@@ -39,31 +34,6 @@ const UserSignIn = () => {
         history.push('/error');
       });
   };
-
-  //
-  // data.createUser(user).then((errors) => {
-  //   if (errors.length) {
-  //     setErrors(errors);
-  //   } else {
-      
-  //       actions.signIn(user.emailAddress, user.password)
-  //       .then(() => history.push('/'));
-  //   }
-  // })
-  // .catch((err) => {
-  //   console.log(err);
-  //   history.push('/error');
-  // })
-  //
-
-  const handleChange = (e) => {
-
-    const { name, value }  = e.target
-    console.log(e.target.value);
-    console.log(e.target.name);
-    setUser({...user, [name]: value})
-
-}
 
   const cancel = (e) => {
     e.preventDefault();

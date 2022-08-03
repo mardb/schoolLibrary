@@ -30,8 +30,13 @@ const CreateCourse = (props) => {
         console.log(authenticatedUser);
         e.preventDefault();
         try {
-            await actions.createCourse(course, authenticatedUser);
-            history.push('/');
+           const res = await data.createCourse(course, authenticatedUser);
+           if (res.errors) {
+            setErrors(res.errors);
+          } else {
+            history.push("/");
+          }
+        //     history.push('/');
           } catch (error) {
             console.log(error);
             setErrors([error]);

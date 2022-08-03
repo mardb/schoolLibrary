@@ -3,33 +3,25 @@ import { Context } from '../Context';
 import { Link, useParams } from 'react-router-dom';
 import { Buffer } from 'buffer';
 import ReactMarkdown from 'react-markdown';
-//allow CourseDetail component to retrieve their data from the REST API when those components are mounted.
-// import Data from '../Data';
-
-//change to stateful component
 
 const CourseDetail = (props) => {
-  // const history = useHistory();
-  const { authenticatedUser } = useContext(
-    Context
-  );
-  console.log(authenticatedUser);
+  //extracts properties from context
+  const { authenticatedUser } = useContext(Context);
   const [course, setCourse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
-
+//fetches data from API
   useEffect((data) => {
     const url = 'http://localhost:5000/api';
     fetch(`${url}/courses/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data.course);
         setCourse(data.course);
         setIsLoading(false);
       });
   }, []);
 
-  //
+  //calls deleteCourse function from API
   const handleDelete = (credentials) => {
     const url = 'http://localhost:5000/api';
     fetch(`${url}/courses/${id}`, {
@@ -44,6 +36,7 @@ const CourseDetail = (props) => {
       },
       body: null,
     }).then((response) => {
+      //course was deleted successfully, message in console else, errors. 
       if (response.status === 204) {
         console.log('Course was deleted.');
       } else if (response.status === 400) {
@@ -55,39 +48,39 @@ const CourseDetail = (props) => {
       }
     });
   };
-
-  // console.log(course.title);
-
+//while loading, gives loading message on screen, else loads UI. This is so that data loads before renter to prevent errors. 
   return !isLoading ? (
     <React.Fragment>
       <div className="actions--bar">
         <div className="wrap">
-        {(authenticatedUser && course.user) ?
-                        (authenticatedUser.id === course.user.id) ?
-          <React.Fragment>
-            <Link
-              to={`/courses/${id}/update`}
-              className="button"
-              href="update-course.html"
-            >
-              Update Course
-            </Link>
-            <Link className="button" to="/courses" onClick={handleDelete}>
-              Delete Course
-            </Link>
+          {/* //if user is authenticated buttons are visible else, disappear. */}
+          {authenticatedUser && course.user ? (
+            authenticatedUser.id === course.user.id ? (
+              <React.Fragment>
+                <Link
+                  to={`/courses/${id}/update`}
+                  className="button"
+                  href="update-course.html"
+                >
+                  Update Course
+                </Link>
+                <Link className="button" to="/courses" onClick={handleDelete}>
+                  Delete Course
+                </Link>
+                <Link to={'/'} className="button button-secondary">
+                  Return to List
+                </Link>
+              </React.Fragment>
+            ) : (
+              <Link to={'/'} className="button button-secondary">
+                Return to List
+              </Link>
+            )
+          ) : (
             <Link to={'/'} className="button button-secondary">
               Return to List
             </Link>
-          </React.Fragment>
-          :
-          <Link to={'/'} className="button button-secondary">
-              Return to List
-            </Link>
-            :
-            <Link to={'/'} className="button button-secondary">
-            Return to List
-          </Link>
-          }
+          )}
         </div>
       </div>
 

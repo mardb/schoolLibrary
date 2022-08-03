@@ -2,12 +2,11 @@ import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Context } from '../Context';
 
-//make stateful component
 const CreateCourse = (props) => {
   const history = useHistory();
+  // extracts properties from context
   const { data, authenticatedUser } = useContext(Context);
-  console.log(authenticatedUser);
-
+  //sets state of errors and course to empty
   const [errors, setErrors] = useState([]);
   const [course, setCourse] = useState({
     title: '',
@@ -16,7 +15,7 @@ const CreateCourse = (props) => {
     materialsNeeded: '',
     userId: authenticatedUser.id,
   });
-
+  //when keys are pressed, value is captured
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCourse((prevState) => ({
@@ -37,40 +36,8 @@ const CreateCourse = (props) => {
       }
     } catch (error) {
       console.log('no luck');
-      // setErrors([error]);
     }
   };
-
-  // .then(errors => {
-  //         if(errors.length){
-  //         setErrors(errors);
-  //         } else {
-  //             actions.createCourse(
-  //                 course.title,
-  //                 course.password,
-  //                 course.description,
-  //                 course.estimatedTime,
-  //                 course.materialsNeeded )
-  //             .then(() => history.push('/'))
-  //         }
-  //     }).catch(err => {
-  //         console.log(err);
-  //         history.push("/error")
-  //     })
-
-  //     const course = {
-  //         title,
-  //         description,
-  //         time,
-  //         materials,
-  //         //im getting this from data.js
-  //         useId: data.authenticatedUser.user.id
-
-  //     }
-  //     console.log(data.authenticatedUser.user.id
-  //         );
-
-  // }
 
   return (
     <div className="wrap">
@@ -140,4 +107,3 @@ const CreateCourse = (props) => {
 };
 
 export default CreateCourse;
-

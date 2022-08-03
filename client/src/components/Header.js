@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../Context';
 
-//make stateless component later
 const Header = () => {
-  // const that = useContext(Context.Context)
+  // extracts authenticatedUser data 
   const { authenticatedUser } = useContext(Context);
-  
+
   return (
     <header>
       <div className="wrap header--flex">
@@ -15,6 +14,7 @@ const Header = () => {
         </h1>
         <nav>
           <ul className="header--signedout">
+            {/* if auth renders personalized content, else renders no name on header.  */}
             {authenticatedUser ? (
               <React.Fragment>
                 <span> Welcome, {authenticatedUser.firstName}!</span>
@@ -22,7 +22,7 @@ const Header = () => {
                   <Link to={'/signout'}>Sign Out</Link>
                 </li>
               </React.Fragment>
-        ) : ( 
+            ) : (
               <React.Fragment>
                 <li>
                   <Link to="/signup">Sign Up</Link>
@@ -31,7 +31,7 @@ const Header = () => {
                   <Link to="/signin">Sign In</Link>
                 </li>
               </React.Fragment>
-       )}  
+            )}
           </ul>
         </nav>
       </div>
@@ -40,5 +40,3 @@ const Header = () => {
 };
 
 export default Header;
-
-   

@@ -1,7 +1,8 @@
-// import config from './config';
 import { Buffer } from 'buffer';
 
 export default class Data {
+
+  //sends GET/PUT/POST/DELETE requests to API
   api(
     path,
     method = 'GET',
@@ -10,9 +11,7 @@ export default class Data {
     credentials = null
   ) {
     const url = 'http://localhost:5000/api' + path;
-
-    // const url = config.apiBaseUrl + path;
-    console.log(credentials);
+//automatically applies theses settings to a request to API
     const options = {
       method,
       headers: {
@@ -23,7 +22,7 @@ export default class Data {
     if (body !== null) {
       options.body = JSON.stringify(body);
     }
-
+//this provides aut for endpoints that require it. 
     if (requiresAuth) {
       const encodedCredentials = Buffer.from(
         `${credentials.emailAddress}:${credentials.password}`
@@ -79,7 +78,6 @@ export default class Data {
     const response = await this.api(`/courses`, 'GET', null);
     if (response.status === 200) {
       return response.json().then((data) => {
-        // console.log(data.courses[0]);
         return data.courses;
       });
     } else if (response.status === 401) {
@@ -124,7 +122,7 @@ export default class Data {
         password,
       }
     );
-    console.log(course.id);
+
     if (response.status === 204) {
       return [];
     } else if (response.status === 400) {

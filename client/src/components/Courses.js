@@ -28,16 +28,6 @@ const Courses = () => {
             <h3 className="course--title">{course.title}</h3>
           </Link>
         ))}
-        {/* I would like to use below code after course */}
-        {/* <Link className="course--module course--link" 
-                to={`/course-detail`} 
-                // key={index} //for map
-                >
-                <h2 className="course--label">Course</h2>
-                <h3 className="course--title">Course Title</h3>
-                 </Link> */}
-
-        {/* {authenticatedUser ? ( */}
         <Link
           to={`/courses/create`}
           className="course--module course--add--module"
@@ -56,10 +46,6 @@ const Courses = () => {
             New Course
           </span>
         </Link>
-        {/* conditional to not show add course button while user is not signed in */}
-        {/* ) : ( */}
-        {/* <></> */}
-        {/* )} */}
       </div>
     </React.Fragment>
   );

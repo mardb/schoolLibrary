@@ -126,7 +126,7 @@ export default class Data {
     );
     console.log(course.id);
     if (response.status === 204) {
-      console.log(response);
+      return [];
     } else if (response.status === 400) {
       return response.json().then((data) => data.errors);
     } else {

@@ -28,7 +28,7 @@ const UserSignIn = () => {
       .then((user) => {
         if (user === null) {
           
-          setErrors('Sign-in was unsuccessful');
+          setErrors(['Sign-in was unsuccessful']);
         } else {
           history.push('/');
           console.log(`SUCCESS! ${emailAddress} is now signed in!`);

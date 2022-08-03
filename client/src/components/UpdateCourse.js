@@ -23,19 +23,7 @@ let history = useHistory()
       description: "",
       estimatedTime: "",
       materialsNeeded: "",
-    });//look up prev state
-//old.. will uncomment later.. trying fetch with path
-// useEffect((data)=>{
-//   // console.log(data.user.id,);
-//     data.courseDetail(data.id)
-//       .then((course) => { setCourse({
-//         id: id,
-//         title: course,
-//         description: "",
-//         estimatedTime: "",
-//         materialsNeeded: "",
-   
-//       })
+    });
         
         
 //         }).catch((err) => console.log(err))

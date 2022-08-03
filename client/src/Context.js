@@ -99,16 +99,16 @@ try{
   }
 }
 
-export const Consumer = Context.Consumer;
+export const Consumer = Context;
 
 //A higher-order component that wraps the provided component in a Context Consumer component.
 
 export default function withContext(Component) {
   return function ContextComponent(props) {
     return (
-      <Context.Consumer>
+      <Context>
         {context => <Component {...props} context={context} />}
-      </Context.Consumer>
+      </Context>
     );
   }
 }

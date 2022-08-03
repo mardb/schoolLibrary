@@ -24,6 +24,7 @@ let history = useHistory()
       estimatedTime: "",
       materialsNeeded: "",
     });
+    const [errors, setErrors] = useState([]);
         
         
 //         }).catch((err) => console.log(err))
@@ -85,7 +86,7 @@ const handleSubmit = (e) => {
               throw new Error();
           }
       })
-  
+     
 }
 
 //------------
@@ -105,17 +106,6 @@ const handleChange= (e)=>{
 }
 
 
-
-
-
-// const handleDelete = (id) => {
-//   data.setCourse( prevState => {
-//     return {
-//       courses: prevState.courses.filter(course => course.id !== id)
-//     }
-//   })
-// }
-
 console.log(course.title);
 
 
@@ -123,6 +113,16 @@ console.log(course.title);
   return(
     <div className="wrap">
         <h2>Update Course</h2>
+        {errors.length !== 0 && (
+        <div className="validation--errors">
+          <h3>Validation Errors</h3>
+          <ul>
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
         <form>
             <div className="main--flex">
                 <div>

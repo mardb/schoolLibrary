@@ -48,7 +48,7 @@ import PrivateRoute from './PrivateRoute';
           <Route exact  path="/" component={ Courses } />
           <PrivateRoute path="/authenticated" component={AuthWithContext} />
           <Route exact path="/courses" component={ Courses } />
-          <Route path="/courses/create" component={CreateCourse}/>
+          <PrivateRoute path="/courses/create" component={CreateCourse}/>
   
           <PrivateRoute path='/courses/:id/update' component={ UpdateCourseWithContext } />
           <Route path="/courses/:id" component={ CourseDetail } />

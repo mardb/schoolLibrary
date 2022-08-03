@@ -168,20 +168,20 @@ console.log(course.title);
         <form>
             <div className="main--flex">
                 <div>
-                    <label htmlFor="courseTitle">Course Title</label>
-                    <input id="courseTitle" name='courseTitle' type="text" value={course.title} onChange={handleChange}/>
+                    <label htmlFor="title">Course Title</label>
+                    <input id="title" name='title' type="text" value={course.title} onChange={handleChange}/>
 
                     <p>
                       {/* By {course.user.firstName} {course.user.lastName}{' '} */}
                     </p>
 
-                    <label htmlFor="courseDescription">Course Description</label>
+                    <label htmlFor="description">Course Description</label>
                     {/* <textarea id="courseDescription" name="courseDescription" 
                     // value={course.description} 
                     onChange={handleChange}></textarea> */}
                     <textarea 
-                    id="courseDescription" 
-                    name="courseDescription" 
+                    id="description" 
+                    name="description" 
                     value={course.description} 
                     onChange={(e) => 
                     setCourse(e.target.value)}></textarea>

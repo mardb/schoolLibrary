@@ -50,7 +50,7 @@ import PrivateRoute from './PrivateRoute';
           <Route exact path="/courses" component={ Courses } />
           <Route path="/courses/create" component={CreateCourse}/>
   
-          <Route path='/courses/:id/update' component={ UpdateCourseWithContext } />
+          <PrivateRoute path='/courses/:id/update' component={ UpdateCourseWithContext } />
           <Route path="/courses/:id" component={ CourseDetail } />
        
           <Route path="/signin" component={ UserSignInWithContext } />
